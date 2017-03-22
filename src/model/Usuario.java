@@ -110,6 +110,10 @@ public class Usuario {
 	      return idEspecialidade;
 	   }
 	   
-	   //usdfydufusaf
+	   public void String tafok(){
+		   
+	   }
+	   
+	   //usdfydufusafwew
 
 }
