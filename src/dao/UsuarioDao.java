@@ -10,6 +10,9 @@ import model.Usuario;
 
 public class UsuarioDao {
 	
+	public UsuarioDao() {
+	}
+	
 	public void IncluirColaborador(Connection conn, Usuario usuario){
 	      String sqlInsertColaborador= "INSERT INTO usuarios(nome, cpf, senha, email, tipo) VALUES (?, ?, ?, ?, 1)";      
 	      PreparedStatement stm = null;

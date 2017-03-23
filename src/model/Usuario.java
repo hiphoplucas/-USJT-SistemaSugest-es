@@ -109,9 +109,5 @@ public class Usuario {
 	   public int getIdEspecialidade(){
 	      return idEspecialidade;
 	   }
-	   
-	   public void String tafok(){
-		   
-	   }
-	   
+   
 }
