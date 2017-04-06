@@ -12,6 +12,13 @@ body {
     margin-right: auto;
 }
 
+.limitHome {
+    height: 100%;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .top {
     width: 100%;
     height: 115px;
@@ -53,6 +60,39 @@ body {
     font-size: 22px;
 }
 
+.menuTituloHome {
+    width: 100%px;
+    height: 100px;
+    font-size: 34px;
+    margin-top: 30px;
+}
+
+#tituloHome{
+    width: 874px;
+}
+
+#barraMenuHome{
+    width: 100%;
+    height: 35px;
+    background: #f1f1f1;
+    border-top: 3px solid #999999;
+    font-size: 14px;
+    color: grey;
+}
+
+#barraMenuHome ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#barraMenuHome li{
+    float: left;
+    text-align: center;
+    padding: 8px;
+}
+
 .menuSubTitulo {
     font-size: 12px;
 }
@@ -82,7 +122,7 @@ body {
     border-right: 1px solid #cccccc;
 }
 
-#esquerdo button {
+#cadastrar {
     width: 294px;
     height: 32px;
     background: #157ab7;
