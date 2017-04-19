@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Verdana !important;  
+}
+
+html{
+    background: #fff;  
+}
+
+.limitHome {
+    height: 100%;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top{
+    margin-top: 40px;
+}
+
+#tituloHome{
+    font-size: 44px;
+    margin-bottom: 20px;
+}
+
+#barraMenuHome{
+    width: 100%;
+    height: 35px;
+    background: #f1f1f1;
+    border-top: 3px solid #999999;
+    font-size: 14px;
+    color: grey;
+}
+
+#barraMenuHome a{
+    text-decoration: none;
+    color: grey;
+}
+
+#barraMenuHome a:hover{
+    font-weight: bold;
+}
+
+#barraMenuHome ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#barraMenuHome li{
+    float: left;
+    text-align: center;
+    padding: 8px;
+}
+
+.conteudo{
+    margin-top: 20px;
+}
+
+.conteudo select{
+    width: 292px;
+    height: 28px;
+    border: 1px solid #cccccc;
+    color: gray;
+}
+
+.sT{
+   font-size: 16px; 
+}
+
+.conteudo .botao{
+    background: #5cb85c;
+    color: #fff;
+    height: 34px;
+    
+}
+
+.conteudo input{
+    width: 292px;
+    height: 28px;
+    border: 1px solid #cccccc;
+}
+
+.conteudo ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.conteudo li{
+    margin-bottom: 12px;
+}
+
+.conteudoCadastro{
+    margin-top: 20px;
+}
+
+.conteudoCadastro .sT{
+   font-size: 16px; 
+}
+
+.conteudoCadastro .botao{
+    background: #5cb85c;
+    color: #fff;
+    height: 34px;
+    width: 610px;
+    
+}
+
+.conteudoCadastro input{
+    width: 292px;
+    height: 28px;
+    border: 1px solid #cccccc;
+}
+
+.conteudoCadastro ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.conteudoCadastro li{
+    margin-bottom: 12px;
+}
+
+@media (max-width: 990px){
+    
+}
