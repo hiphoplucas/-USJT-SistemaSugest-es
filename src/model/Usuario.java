@@ -1,113 +1,69 @@
 package model;
 
-public class Usuario {
+import java.io.Serializable;
 
-	   private String nome;
-	   private String cpf;
-	   private String email;
-	   private String senha;
-	   private String curso;
-	   private int id;
-	   private int tipo;
-	   private int idEspecialidade;
-	  
-	   public static String publicNome;
-	   
-	   public Usuario(){
-	      nome = "";
-	      cpf = "";
-	      email= "";
-	      senha= "";
-	      curso= "";
-	      id=0;   
-	   }
-
-	   public Usuario(String n, String cp, String e, String s, String c, int esp){
-	      setNome(n);
-	      publicNome = n;
-	      setCpf(cp);
-	      setEmail(e);
-	      setSenha(s);
-	      setCurso(c);
-	      setIdEspecialidade(esp);
-	   }
-	   
-	   public Usuario(int id, String n, String cp, String e, String s, String c){      
-	      setIdUsuario(id);
-	      setNome(n);
-	      setCpf(cp);
-	      setEmail(e);
-	      setSenha(s);
-	      setCurso(c);
-	      
-	   }
-
-	   public void setIdUsuario(int i){
-		   id = i;
-	   }
-	   public int getidUsuario(){
-	      return id;
-	   }
-	   
-	   public void setTipoUsuario(int i){
-		   id = i;
-	   }
-	   public int getTipoUsuario(){
-	      return id;
-	   }
-	   
-	   public static void setPublicNome(String s){
-	      publicNome = s;
-	   }
-	   
-	   public static String getPublicNome(){
-	      return publicNome;
-	   }
-	   
-	   public void setNome(String n){
-	      nome = n;
-	   }
-	   public String getNome(){
-	      return nome;
-	   }
-	   
-	   public void setCpf(String cp){
-	      cpf = cp.replaceAll("[^0123456789]", "");
-	   }
-	   public String getCpf(){
-	      return cpf;
-	   }
-
-	   public void setEmail(String e){
-	      email = e;
-	   }
-	   public String getEmail(){
-	      return email;
-	   }
-
-	   public void setSenha(String s){
-	      senha = MD5.MD5(s);
-	   }
-	   public String getSenha(){
-	      return senha;
-	   }
-	   public void setCurso(String c){
-	      curso = c;
-	   }
-	   public String getCurso(){
-	      return curso;
-	   }
-	   public void setTipo(int t){
-	      tipo = t;
-	   }
-	   public int getTipo(){
-	      return tipo;
-	   }
-	   public void setIdEspecialidade(int i){
-	      idEspecialidade = i;
-	   }
-	   public int getIdEspecialidade(){
-	      return idEspecialidade;
-	   }
-   
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private int id;
+	private String nome;
+	private String email;
+	private String cpf;
+	private String senha;
+	private int idEspecialidade;
+	
+	public Usuario() {
+		
+	}
+	public Usuario(int id, String nome, String email, String cpf, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.senha = senha;
+	}
+	public Usuario(int id, String nome, String email, String cpf, String senha, int idEspecialidade) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.idEspecialidade = idEspecialidade;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public int getIdEspecialidade() {
+		return idEspecialidade;
+	}
+	public void setIdEspecialidade(int idEspecialidade) {
+		this.idEspecialidade = idEspecialidade;
+	}	
 }

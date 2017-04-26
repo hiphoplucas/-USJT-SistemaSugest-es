@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>USJT - SISTEMA SUGESTÕES</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="estilo/estilo.css" rel="stylesheet">
+	<link href="css/estilo.css" rel="stylesheet">
 </head>
 <header>
     <div class="top">
@@ -21,7 +21,7 @@
     </div>
 </header>
 <body>
-<form action="ManterUsuario.do" name="form" method="post">
+<form action="controller.do" method="post">
     <div class="conteudo">
         <div class="limit">
             <div class="menu">
@@ -45,7 +45,7 @@
                             <li>
                                 <input type="text" placeholder=" Confirme a Senha"> </li>
                             <li>
-                                <input type="submit" name="acao" value="CADASTRAR" id="cadastrar">
+                                <input type="submit" name="command" value="CriarUsuario"  id="cadastrar">
                             </li>
                         </ul>
                     </div>
