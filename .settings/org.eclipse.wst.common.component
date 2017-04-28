@@ -2,6 +2,7 @@
     <wb-module deploy-name="SistemaSugestoes">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
         <property name="context-root" value="SistemaSugestoes"/>
         <property name="java-output-path" value="/SistemaSugestoes/build/classes"/>
     </wb-module>
