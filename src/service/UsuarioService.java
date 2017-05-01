@@ -1,6 +1,10 @@
 package service;
 
+import model.Categoria;
 import model.Usuario;
+
+import java.util.ArrayList;
+
 import dao.UsuarioDAO;
 
 
@@ -19,6 +23,9 @@ public class UsuarioService {
 	
 	public void excluir(int id){
 		dao.excluir(id);
+	}
+	public ArrayList<Usuario> listarAvaliador(){
+		return dao.listarAvaliador();
 	}
 	
 	public Usuario carregar(int id){

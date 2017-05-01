@@ -16,7 +16,7 @@ public class ConnectionFactory {
 	// Obtém conexão com o banco de dados
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager
-				.getConnection("jdbc:mysql://localhost/test?user=root&password=");
+				.getConnection("jdbc:mysql://localhost/sugestoes?user=root&password=manager");
 	}
 
 }

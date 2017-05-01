@@ -21,10 +21,17 @@
     <div class="limitHome">
         <div class="container-fluid">
             <div class="menuSugestoes">
-            <div class="col-md-8">
-                <button>testex</button>
+            <div class="col-md-10">
+                 <select name="categoria">
+                	<option value="#">*Selecione o Departamento*</option>
+                <c:if test="${not empty lista}">
+                <c:forEach var="categoria" items="${lista}">                    
+                    <option value="${categoria.id }">${categoria.categoria }</option>
+                </c:forEach>
+                </c:if>
+                </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <a href="novaSugestao.jsp"><button class="botao">+ Nova Sugestão</button></a>
             </div>
             </div>

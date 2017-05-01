@@ -65,7 +65,7 @@
                                 <li>
                                     <input type="text" placeholder=" Senha "> </li>
                                 <li>
-                                    <button type="button">LOGIN</button>
+                                    <a href="sugestoes.jsp"><button type="button">LOGIN</button></a>
                                 </li>
                         </ul>
                     

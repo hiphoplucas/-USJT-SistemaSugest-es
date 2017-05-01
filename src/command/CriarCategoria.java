@@ -44,9 +44,7 @@ public class CriarCategoria implements Command {
 		ArrayList<Categoria> lista = null;
 		lista = cs.listarCategoria();
 		session.setAttribute("lista", lista);
-		
-		//System.out.println(lista.get(0));
-		
+				
 		view = request.getRequestDispatcher("categorias.jsp");
 		view.forward(request, response);
 
