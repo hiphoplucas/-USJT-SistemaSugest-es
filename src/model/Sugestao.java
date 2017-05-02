@@ -3,6 +3,7 @@ package model;
 public class Sugestao{
 
    private int idSugestao;
+   private int id;
    private int colaborador;
    private String titulo;
    private String sugestao;

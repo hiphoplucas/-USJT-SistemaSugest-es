@@ -1,7 +1,8 @@
 package service;
 
+import java.util.ArrayList;
+
 import dao.SugestaoDAO;
-import model.Categoria;
 import model.Sugestao;
 
 public class SugestaoService {
@@ -9,5 +10,8 @@ public class SugestaoService {
 	
 	public int novaSugestao(Sugestao sugestao) {
 		return dao.novaSugestao(sugestao);
+	}
+	public ArrayList<Sugestao> listarTopSugestao(){
+		return dao.listarTopSugestao();
 	}
 }

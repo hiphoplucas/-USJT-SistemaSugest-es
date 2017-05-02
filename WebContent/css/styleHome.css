@@ -15,6 +15,20 @@ html{
     margin-right: auto;
 }
 
+.limitSugestao {
+    height: 450px;
+    width: 900px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sugestao{
+    height: 450px;
+    width: 635px;
+    border-right: 1px solid #ccc
+}
+
 .top{
     margin-top: 40px;
 }
@@ -73,7 +87,7 @@ html{
 .conteudo .botao{
     background: #5cb85c;
     color: #fff;
-    height: 34px;
+    height: 30px;
     width: 100%;
     
 }
@@ -106,7 +120,7 @@ html{
 }
 
 .sugestao{
-	heigth: 300px;
+	height: 300px;
 }
 
 .conteudoCadastro{
@@ -151,18 +165,28 @@ html{
     height: 28px;
     border: 1px solid #cccccc;
     width: 150px;
-    heigth: 35px;
+    height: 30px;
     
 }
 
 .menuSugestoes select{
     border: 1px solid #cccccc;
-    width: 200px;
-    heigth: 40px;
-    
+    width: 210px;
+    height: 30px;    
 }
 
+.tPopulares{
+    font-size: 20px;
+}
 
+.subPopulares{
+    font-size: 18px;
+    color: #23527b;
+}
+
+.pSugestao{
+    font-size: 12px;
+}
 
 @media (max-width: 990px){
     
