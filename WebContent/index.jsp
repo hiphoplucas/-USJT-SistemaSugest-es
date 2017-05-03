@@ -65,7 +65,7 @@
                                 <li>
                                     <input type="text" placeholder=" Senha "> </li>
                                 <li>
-                                    <a href="controller.do?command=ListarTopSugestoes"><button type="button">LOGIN</button></a>
+                                    <a href="controller.do?command=CarregaHome"><button type="button">LOGIN</button></a>
                                 </li>
                         </ul>
                     

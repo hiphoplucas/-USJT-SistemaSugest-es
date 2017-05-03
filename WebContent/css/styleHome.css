@@ -25,7 +25,6 @@ html{
 
 #sugestao{
     height: 450px;
-    width: 635px;
     border-right: 1px solid #ccc
 }
 
@@ -177,15 +176,27 @@ html{
 
 .tPopulares{
     font-size: 20px;
+    width: 30px;
 }
 
 .subPopulares{
-    font-size: 18px;
+    font-size: 16px;
     color: #23527b;
+    width: 300px;
 }
 
 .pSugestao{
     font-size: 12px;
+}
+
+.pData{
+    font-size: 12px;
+    color: #ccc;
+}
+
+.pVerMais a {
+    text-decoration: none;
+    color: #999;
 }
 
 @media (max-width: 990px){

@@ -3,14 +3,16 @@ package model;
 public class Sugestao{
 
    private int idSugestao;
-   private int id;
    private int colaborador;
    private String titulo;
    private String sugestao;
    private String avaliador, feedback;
    private int especialidade;
+   private String nomeEspecialidade;
    private int positivo;
    private int negativo;
+   private String data;
+   private String corEspecialidade;
    public static int idColaborador;
    
    public Sugestao() {
@@ -107,6 +109,30 @@ public static int getIdColaborador() {
 
 public static void setIdColaborador(int idColaborador) {
 	Sugestao.idColaborador = idColaborador;
+}
+
+public String getData() {
+	return data;
+}
+
+public void setData(String data) {
+	this.data = data;
+}
+
+public String getNomeEspecialidade() {
+	return nomeEspecialidade;
+}
+
+public void setNomeEspecialidade(String nomeEspecialidade) {
+	this.nomeEspecialidade = nomeEspecialidade;
+}
+
+public String getCorEspecialidade() {
+	return corEspecialidade;
+}
+
+public void setCorEspecialidade(String corEspecialidade) {
+	this.corEspecialidade = corEspecialidade;
 }
    
    

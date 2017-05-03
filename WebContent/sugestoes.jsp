@@ -38,23 +38,28 @@
         </div>
             <div class="limitSugestao">
                 <div class="container-fluid">
-                    <div class="col-md-9" id=sugestao>
-                    
+                    <div class="col-md-8" id=sugestao>
+                    	
                     </div>
-                    <div class="col-md-3">
-                        <div class="tPopulares">
-                            Populares
+                    <div class="col-md-4">
+                        <div class="boxPopulares">
+                            <div class="tPopulares">
+                                Populares
+                            </div>
+                                 <c:if test="${not empty lista}">
+                                    <c:forEach var="sugestao" items="${listaTop}">                    
+                                        <div class="subPopulares">
+                                            ${sugestao.titulo } 
+                                        </div>
+                                        <div class="pSugestao">
+                                            ${sugestao.sugestao }
+                                        </div>
+                                        <div class="pData">
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMai"><a href="#">Ver Mais</a></spam> <br><br>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
                         </div>
-                             <c:if test="${not empty lista}">
-                                <c:forEach var="sugestao" items="${listaTop}">                    
-                                    <div class="subPopulares">
-                                        ${sugestao.titulo } teste
-                                    </div>
-                                    <div class="pSugestao">
-                                        ${sugestao.sugestao }
-                                    </div>
-                                </c:forEach>
-                            </c:if>
                     </div>            
             </div>  
             </div>

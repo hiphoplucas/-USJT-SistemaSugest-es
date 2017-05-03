@@ -37,7 +37,7 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarTopSugestao() {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "SELECT sugestao.idSugestao, count(comentarios.comentario) as qtd, titulo, sugestao from sugestao join comentarios on comentarios.idSugestao = sugestao.idSugestao order by qtd desc limit 5";
+		String sqlSelect = "select comentarios.idSugestao,DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, count(comentarios.id),sugestao.titulo as titulo,sugestao.Sugestao as sugestao,especialidade.nomeEspecialidade as especialidade from comentarios join sugestao on sugestao.idSugestao = comentarios.idSugestao join especialidade on especialidade.idEspecialidade = sugestao.especialidade group by comentarios.idSugestao order by count(comentarios.id) desc limit 0,5";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -46,6 +46,33 @@ public class SugestaoDAO {
 					sugestao = new Sugestao();
 					sugestao.setTitulo(rs.getString("titulo"));
 					sugestao.setSugestao(rs.getString("sugestao"));
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
+					listaTop.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaTop;
+	}
+	public ArrayList<Sugestao> listarSugestao() {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaTop = new ArrayList<>();
+		String sqlSelect = "SELECT s.*, e.corEspecialidade, e.nomeEspecialidade FROM sugestao s INNER JOIN especialidade e ON s.Especialidade=e.idEspecialidade WHERE status='ativo'";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setTitulo(rs.getString("titulo"));
+					sugestao.setSugestao(rs.getString("sugestao"));
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("nomeEspecialidade"));
+					sugestao.setCorEspecialidade(rs.getString("corEspecialidade"));
 					listaTop.add(sugestao);
 				}
 			} catch (SQLException e) {
