@@ -35,15 +35,15 @@ public class UsuarioDAO {
 	}
 	
 	public int criarAvaliador(Usuario usuario) {
-		String sqlInsert = "INSERT INTO usuarios(nome, idEspecialidade, senha, email, cpf, tipo) VALUES (?, ?, ?, ?, ?, 2)";
+		String sqlInsert = "INSERT INTO usuarios(nome, senha, email, cpf, tipo) VALUES (?, ?, ?, ?, 2)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setString(1, usuario.getNome());
-			stm.setInt(2, usuario.getIdEspecialidade()); 
-			stm.setString(3, usuario.getSenha());
-			stm.setString(4, usuario.getEmail());
-			stm.setString(5, usuario.getCpf());
+			stm.setString(2, usuario.getSenha());
+			stm.setString(3, usuario.getEmail());
+			stm.setString(4, usuario.getCpf());
+			/* stm.setInt(5, usuario.getIdEspecialidade()); */
 			stm.execute();
 			String sqlQuery = "SELECT LAST_INSERT_ID()";
 			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery);
@@ -58,31 +58,6 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 		return usuario.getId();
-	}
-	
-	public ArrayList<Usuario> listarAvaliador() {
-		Usuario usuario;
-		ArrayList<Usuario> lista = new ArrayList<>();
-		String sqlSelect = "Select idusuario, nome, email, nomeEspecialidade from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade where usuarios.tipo = 2";
-		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			try (ResultSet rs = stm.executeQuery();) {
-				while (rs.next()) {
-					usuario = new Usuario();
-					usuario.setId(rs.getInt("idusuario"));
-					usuario.setNome(rs.getString("nome"));
-					usuario.setEmail(rs.getString("email"));
-					usuario.setNomeEspecialidade(rs.getString("nomeEspecialidade"));;
-					lista.add(usuario);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-		return lista;
 	}
 
 	public void atualizar(Usuario usuario) {
@@ -111,7 +86,31 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public ArrayList<Usuario> listarAvaliador() {
+		Usuario usuario;
+		ArrayList<Usuario> lista = new ArrayList<>();
+		String sqlSelect = "select idusuario, nome, Email, especialidade.nomeEspecialidade as especialidade from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade where tipo = 2;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					usuario = new Usuario();
+					usuario.setId(rs.getInt("idusuario"));
+					usuario.setNome(rs.getString("nome"));
+					usuario.setEmail(rs.getString("Email"));;
+					usuario.setNomeEspecialidade(rs.getString("especialidade"));;
+					lista.add(usuario);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}return lista;
+	}
+	
 	public Usuario carregar(int id) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
@@ -139,5 +138,6 @@ public class UsuarioDAO {
 		}
 		return usuario;
 	}
+	
 
 }

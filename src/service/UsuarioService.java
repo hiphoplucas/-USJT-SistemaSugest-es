@@ -1,6 +1,5 @@
 package service;
 
-import model.Categoria;
 import model.Usuario;
 
 import java.util.ArrayList;

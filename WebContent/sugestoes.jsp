@@ -44,7 +44,7 @@
                     <div class="col-md-4">
                         <div class="boxPopulares">
                             <div class="tPopulares">
-                                Populares
+                                Populares<br>
                             </div>
                                  <c:if test="${not empty lista}">
                                     <c:forEach var="sugestao" items="${listaTop}">                    
@@ -55,7 +55,7 @@
                                             ${sugestao.sugestao }
                                         </div>
                                         <div class="pData">
-                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMai"><a href="#">Ver Mais</a></spam> <br><br>
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a value="${sugestao.idSugestao }" href="controller.do?command=ListaComentario"><button type="button"">Ver Mais</a></spam> <br><br>
                                         </div>
                                     </c:forEach>
                                 </c:if>

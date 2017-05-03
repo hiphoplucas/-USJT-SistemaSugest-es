@@ -28,6 +28,11 @@ html{
     border-right: 1px solid #ccc
 }
 
+.boxBorda{
+    height: 450px;
+    border-right: 1px solid #ccc
+}
+
 .top{
     margin-top: 40px;
 }
@@ -182,11 +187,18 @@ html{
 .subPopulares{
     font-size: 16px;
     color: #23527b;
-    width: 300px;
+    white-space: nowrap; 
+    width: 24em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pSugestao{
     font-size: 12px;
+    white-space: nowrap; 
+    width: 24em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pData{
@@ -197,6 +209,10 @@ html{
 .pVerMais a {
     text-decoration: none;
     color: #999;
+}
+
+.vSugestao{
+	margin-top: 20px;
 }
 
 @media (max-width: 990px){
