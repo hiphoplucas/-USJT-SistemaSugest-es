@@ -60,8 +60,8 @@ public class SugestaoDAO {
 	}
 	public ArrayList<Sugestao> listarSugestao() {
 		Sugestao sugestao;
-		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "SELECT s.*, e.corEspecialidade, e.nomeEspecialidade FROM sugestao s INNER JOIN especialidade e ON s.Especialidade=e.idEspecialidade WHERE status='ativo'";
+		ArrayList<Sugestao> listaSugestao = new ArrayList<>();
+		String sqlSelect = "SELECT s.*, e.corEspecialidade, e.nomeEspecialidade, DATE_FORMAT(s.data, '%d/%m/%y') as dataF FROM sugestao s INNER JOIN especialidade e ON s.Especialidade=e.idEspecialidade WHERE status='ativo'";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -70,10 +70,10 @@ public class SugestaoDAO {
 					sugestao = new Sugestao();
 					sugestao.setTitulo(rs.getString("titulo"));
 					sugestao.setSugestao(rs.getString("sugestao"));
-					sugestao.setData(rs.getString("data"));
+					sugestao.setData(rs.getString("dataF"));
 					sugestao.setNomeEspecialidade(rs.getString("nomeEspecialidade"));
 					sugestao.setCorEspecialidade(rs.getString("corEspecialidade"));
-					listaTop.add(sugestao);
+					listaSugestao.add(sugestao);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -81,6 +81,6 @@ public class SugestaoDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return listaTop;
+		return listaSugestao;
 	}
 }

@@ -36,8 +36,13 @@ public class CarregaHome implements Command {
 		listaTop = ss.listarTopSugestao();
 		session.setAttribute("listaTop", listaTop);
 		
+		ArrayList<Sugestao> listaSugestao = null;
+		listaSugestao = ss.listarSugestao();
+		session.setAttribute("listaSugestao", listaSugestao);
+		
 		view = request.getRequestDispatcher("sugestoes.jsp");
 		view.forward(request, response);
+		
 
 
 	}

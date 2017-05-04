@@ -161,6 +161,7 @@ html{
 
 .menuSugestoes{
     margin-top: 10px;
+    margin-left: -22px;
 }
 
 .menuSugestoes .botao{
@@ -179,6 +180,14 @@ html{
     height: 30px;    
 }
 
+.bOk{
+	height: 30px;
+	width: 30px;
+	background: #999;
+	color: #fff;
+	border: 0;
+}
+
 .tPopulares{
     font-size: 20px;
     width: 30px;
@@ -188,7 +197,7 @@ html{
     font-size: 16px;
     color: #23527b;
     white-space: nowrap; 
-    width: 24em; 
+    width: 20em; 
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -211,8 +220,33 @@ html{
     color: #999;
 }
 
+.pVerMais button {
+    border: 0;
+    background: #FFF;
+}
+
+
 .vSugestao{
 	margin-top: 20px;
+}
+
+.titulo{
+	font-size: 16px;
+    color: #23527b;
+}
+
+.lSugestao{
+	font-size: 12px;
+	
+}
+
+.boxSugestao{
+	margin-left: -84px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	border-sizing: border-box;
+	height: 95px;
+	
 }
 
 @media (max-width: 990px){

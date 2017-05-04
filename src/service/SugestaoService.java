@@ -14,4 +14,7 @@ public class SugestaoService {
 	public ArrayList<Sugestao> listarTopSugestao(){
 		return dao.listarTopSugestao();
 	}
+	public ArrayList<Sugestao> listarSugestao(){
+		return dao.listarSugestao();
+	}
 }
