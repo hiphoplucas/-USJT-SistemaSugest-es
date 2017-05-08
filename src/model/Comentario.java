@@ -4,6 +4,7 @@ public class Comentario {
 	private String comentario;
 	private int id;
 	private int colaborador;
+	private String nomeColaborador;
 	private int idSugestao;
 	private String usuario;
 	
@@ -46,6 +47,12 @@ public class Comentario {
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+	public String getNomeColaborador() {
+		return nomeColaborador;
+	}
+	public void setNomeColaborador(String nomeColaborador) {
+		this.nomeColaborador = nomeColaborador;
 	}
 	
 	

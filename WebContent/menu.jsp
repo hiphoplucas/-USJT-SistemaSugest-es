@@ -8,7 +8,7 @@
     <div id="barraMenuHome">    
         <div class="limitHome">            
             <ul>
-                <li><a href="sugestoes.jsp">SUGESTÕES</a></li>
+                <li><a href="controller.do?command=CarregaHome">SUGESTÕES</a></li>
                 <li><a href="meusDados.jsp">MEUS DADOS</a></li>
                 <li><a href="algumaDuvida.jsp">ALGUMA DUVIDA</a></li>
                 <li><a href="controller.do?command=ListarAvaliador">AVALIADOR</a></li>

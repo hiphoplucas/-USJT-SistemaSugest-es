@@ -37,13 +37,14 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarTopSugestao() {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "select comentarios.idSugestao,DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, count(comentarios.id),sugestao.titulo as titulo,sugestao.Sugestao as sugestao,especialidade.nomeEspecialidade as especialidade from comentarios join sugestao on sugestao.idSugestao = comentarios.idSugestao join especialidade on especialidade.idEspecialidade = sugestao.especialidade group by comentarios.idSugestao order by count(comentarios.id) desc limit 0,5";
+		String sqlSelect = "select comentarios.idSugestao as id,DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, count(comentarios.id),sugestao.titulo as titulo,sugestao.Sugestao as sugestao,especialidade.nomeEspecialidade as especialidade from comentarios join sugestao on sugestao.idSugestao = comentarios.idSugestao join especialidade on especialidade.idEspecialidade = sugestao.especialidade group by comentarios.idSugestao order by count(comentarios.id) desc limit 0,5";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("id"));
 					sugestao.setTitulo(rs.getString("titulo"));
 					sugestao.setSugestao(rs.getString("sugestao"));
 					sugestao.setData(rs.getString("data"));
@@ -68,8 +69,9 @@ public class SugestaoDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("idSugestao"));
 					sugestao.setTitulo(rs.getString("titulo"));
-					sugestao.setSugestao(rs.getString("sugestao"));
+					sugestao.setSugestao(rs.getString("sugestao").substring(0, 100)+"...");
 					sugestao.setData(rs.getString("dataF"));
 					sugestao.setNomeEspecialidade(rs.getString("nomeEspecialidade"));
 					sugestao.setCorEspecialidade(rs.getString("corEspecialidade"));
@@ -82,5 +84,30 @@ public class SugestaoDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return listaSugestao;
+	}
+	public Sugestao carregar(int id) {
+		Sugestao sugestao = new Sugestao();
+		sugestao.setIdSugestao(id);
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao FROM sugestao WHERE idSugestao = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, sugestao.getIdSugestao());
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					sugestao.setTitulo(rs.getString("titulo"));
+					sugestao.setSugestao(rs.getString("sugestao"));
+				} else {
+					sugestao.setIdSugestao(-1);
+					sugestao.setTitulo(null);
+					sugestao.setSugestao(null);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return sugestao;
 	}
 }

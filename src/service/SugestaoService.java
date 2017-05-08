@@ -11,6 +11,9 @@ public class SugestaoService {
 	public int novaSugestao(Sugestao sugestao) {
 		return dao.novaSugestao(sugestao);
 	}
+	public Sugestao carregar(int id){
+		return dao.carregar(id);
+	}
 	public ArrayList<Sugestao> listarTopSugestao(){
 		return dao.listarTopSugestao();
 	}

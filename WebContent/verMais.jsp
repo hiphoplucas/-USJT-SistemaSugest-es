@@ -15,20 +15,44 @@
     <div class="container-fluid">
         <div class="top">
             <div class="limitHome">
-                <div class="col-md-9"><div id="tituloHome">Sugestão</div></div>
+                <div class="col-md-9"><div id="tituloHome">Ver Sugestão</div></div>
                 <c:import url="menu.jsp"/>
     </div>
     <div class="limitHome">
     	<div class="vSugestao">
     	<div class="container-fluid">
     		<div class="col-md-8" id=sugestao>
-    			Título
-    			Sugestão
-    			Comentário
-    			Salvar
+    			<div class="tPopulares">
+    				Título
+    			</div>
+    			<div class="vsTitulo">
+    			${sugestao.idSugestao } | ${comentario.idSugestao } | ${sugestao.titulo }
+    			</div>
+    			<div class="tPopulares">
+    				Sugestão
+    			</div>
+    			<div class="vsSugestao">
+    			${sugestao.sugestao }
+    			</div>
+    			<div class="vsAcao">
+    				<input type="text" placeholder=" Faça aqui seu comentário sobre essa sugestão"> <br>
+    				<button>SALVAR</button>
+    			</div>
     		</div>
     		<div class="col-md-4">
-    			Comentários
+    			<div class="tPopulares">
+    				Comentários ${sugestao.idSugestao }<br>
+    			</div>
+    			<c:if test="${not empty listaComentario}">
+                	<c:forEach var="comentario" items="${listaComentario}">                    
+                		<div class="vsUsuario">
+                			Usuário: ${comentario.nomeColaborador } 
+                		</div>
+                		<div class="vsSugestao">
+                			${comentario.comentario } <br>
+                		</div>
+                	</c:forEach>
+                </c:if>    			
     		</div>
     	</div>
     	</div>

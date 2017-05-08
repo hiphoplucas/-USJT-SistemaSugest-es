@@ -42,7 +42,7 @@
                     <div class="col-md-8" id=sugestao>
                                  <c:if test="${not empty listaSugestao}">
                                     <c:forEach var="sugestao" items="${listaSugestao}">                    
-                                        <div style="border-left: 5px solid  ${sugestao.corEspecialidade }; " class="boxSugestao">
+                                        <div style="border-left: 3px solid  ${sugestao.corEspecialidade }; " class="boxSugestao">
                                         <div class="titulo">
                                             ${sugestao.titulo } 
                                         </div>
@@ -50,7 +50,7 @@
                                             ${sugestao.sugestao }
                                         </div>
                                         <div class="pData">
-                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a value="${sugestao.idSugestao }" href="controller.do?command=ListaComentario"><button type="button"">Ver Mais</button></a></spam> <br><br>
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a href="controller.do?command=CarregaSugestao&id=${sugestao.idSugestao }"><button type="button"">Ver Mais</button></a></spam> <br><br>
                                         </div>
                                         </div>
                                     </c:forEach>
@@ -70,7 +70,7 @@
                                             ${sugestao.sugestao }
                                         </div>
                                         <div class="pData">
-                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a value="${sugestao.idSugestao }" href="controller.do?command=ListaComentario"><button type="button"">Ver Mais</a></spam> <br><br>
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a href="controller.do?command=CarregaSugestao&id=${sugestao.idSugestao }"><button type="button"">Ver Mais</a></spam> <br><br>
                                         </div>
                                     </c:forEach>
                                 </c:if>

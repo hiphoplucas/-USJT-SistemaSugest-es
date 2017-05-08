@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Categoria;
 import model.Usuario;
 
 public class UsuarioDAO {
@@ -87,7 +86,31 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public ArrayList<Usuario> listarAvaliador() {
+		Usuario usuario;
+		ArrayList<Usuario> lista = new ArrayList<>();
+		String sqlSelect = "select idusuario, nome, Email, especialidade.nomeEspecialidade as especialidade from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade where tipo = 2;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					usuario = new Usuario();
+					usuario.setId(rs.getInt("idusuario"));
+					usuario.setNome(rs.getString("nome"));
+					usuario.setEmail(rs.getString("Email"));;
+					usuario.setNomeEspecialidade(rs.getString("especialidade"));;
+					lista.add(usuario);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}return lista;
+	}
+	
 	public Usuario carregar(int id) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
@@ -115,29 +138,6 @@ public class UsuarioDAO {
 		}
 		return usuario;
 	}
-	public ArrayList<Usuario> listarAvaliador() {
-		Usuario usuario;
-		ArrayList<Usuario> lista = new ArrayList<>();
-		String sqlSelect = "select idUsuario, nome, email, especialidade.nomeEspecialidade as especialidade from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade";
-		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			try (ResultSet rs = stm.executeQuery();) {
-				while (rs.next()) {
-					usuario = new Usuario();
-					usuario.setId(rs.getInt("idUsuario"));
-					usuario.setNome(rs.getString("nome"));
-					usuario.setEmail(rs.getString("email"));;
-					usuario.setNomeEspecialidade(rs.getString("especialidade"));;
-					lista.add(usuario);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-		return lista;
-	}
+	
 
 }

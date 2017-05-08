@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Comentario;
-import model.Sugestao;
 
 public class ComentarioDAO {
 	public int criar(Comentario comentario) {
@@ -33,22 +32,23 @@ public class ComentarioDAO {
 		}
 		return comentario.getId();
 	}
-	public ArrayList<Comentario> listarComentario() {
-		Comentario comentario;
-		Sugestao sugestao = null;
+	public ArrayList<Comentario> ListarComentario(int id) {
+		Comentario comentario = new Comentario();
+		comentario.setIdSugestao(id);
 		ArrayList<Comentario> listaComentario = new ArrayList<>();
-		String sqlSelect = "SELECT id, usuarios.nome as Usuario, comentarios.comentario as Comentario FROM comentarios join usuarios on usuarios.idusuario = comentarios.idUsuario where idSugestao = 2";
+		String sqlSelect = "SELECT idSugestao, nome, comentario FROM comentarios join usuarios on usuarios.idusuario = comentarios.idUsuario where idSugestao = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-					stm.setInt(1, sugestao.getIdSugestao());
+			stm.setInt(1, comentario.getIdSugestao());
 			try (ResultSet rs = stm.executeQuery();) {
-				while (rs.next()) {
-					comentario = new Comentario();
-					comentario.setId(rs.getInt("id"));
-					comentario.setUsuario(rs.getString("Usuario"));
-					comentario.setComentario(rs.getString("Comentario"));;
-					listaComentario.add(comentario);
+				if (rs.next()) {
+					comentario.setNomeColaborador(rs.getString("nome"));
+					comentario.setComentario(rs.getString("comentario"));
+				} else {
+					comentario.setIdSugestao(-1);
+					comentario.setNomeColaborador(null);
+					comentario.setComentario(null);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -58,5 +58,4 @@ public class ComentarioDAO {
 		}
 		return listaComentario;
 	}
-	
 }

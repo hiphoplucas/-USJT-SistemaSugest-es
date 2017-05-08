@@ -23,7 +23,6 @@ public class CriarCategoria implements Command {
 		String pCategoria = request.getParameter("categoria");
 		String pCor = request.getParameter("cor");
 		int id = -1;
-		System.out.println(pCategoria);
 		
 		try {
 			id = Integer.parseInt(pId);
