@@ -21,12 +21,12 @@
     </div>
 </header>
 <body>
-<form action="controller.do" method="post">
+
     <div class="conteudo">
         <div class="limit">
             <div class="menu">
                 <div class="opcoes" id="esquerdo">
-                    
+                    <form action="controller.do" method="post">
                         <ul>
                             <li>
                                 <div class="menuTitulo">Cadastre-se</div>
@@ -48,10 +48,12 @@
                                 <input type="submit" name="command" value="CriarUsuario"  id="cadastrar">
                             </li>
                         </ul>
+                     </form>
                     </div>
                
                 <div class="opcoes" id="direito">
-                    
+                    <form action="controller.do" method="post">
+                    <input type="hidden" name="command" value="Login">
                         <ul>
                             <li>
                                 <div class="menuTitulo">Login</div>
@@ -61,18 +63,18 @@
                             </li>
                             <li>
                                 <li>
-                                    <input type="text" placeholder=" Email"> </li>
+                                    <input type="text" name="email" placeholder=" Email"> </li>
                                 <li>
-                                    <input type="text" placeholder=" Senha "> </li>
+                                    <input type="text" name="senha" placeholder=" Senha "> </li>
                                 <li>
-                                    <button type="button">LOGIN</button>
+                                    <button type="submit">LOGIN</button>
                                 </li>
                         </ul>
-                    
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-   </form>
+   
 </body>
 </html>

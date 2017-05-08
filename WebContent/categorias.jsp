@@ -32,13 +32,13 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nome</th>
-                                    <th></th>
-                                    <th class="actions">Ações</th>
+                                    <th>Categoria</th>
+                                    <th>Cor</th>
+                                    <th class="actions">Opções</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="cliente" items="${lista}">
+          					<c:forEach var="categoria" items="${lista}">
                                        <tr>
                                             <td>
                                                ${categoria.id }
@@ -50,7 +50,6 @@
                                                 ${categoria.cor }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarCliente&id=${cliente.id }">Visualizar</a>
                                                 <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
                                                 <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
                                             </td>
@@ -59,7 +58,7 @@
 
                             </tbody>
                         </table>
-
+                        <a href="novaCategoria.jsp"><input type="submit" value="NOVO CATEGORIA" class="botao"></a>
                     </div>
                 </div>
                 <!-- /#list -->

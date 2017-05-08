@@ -10,33 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Categoria;
+import model.Sugestao;
 import service.CategoriaService;
+import service.SugestaoService;
 
 
 
-public class CriarCategoria implements Command {
+public class CarregaHome implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		String pId = request.getParameter("id");
-		String pCategoria = request.getParameter("categoria");
-		String pCor = request.getParameter("cor");
-		int id = -1;
 		
-		try {
-			id = Integer.parseInt(pId);
-		} catch (NumberFormatException e) {
-
-		}
-
-		Categoria categoria = new Categoria();
-		categoria.setId(id);
-		categoria.setCategoria(pCategoria);
-		categoria.setCor(pCor);
 		CategoriaService cs = new CategoriaService();
-		cs.criar(categoria);
-		
+		SugestaoService ss = new SugestaoService();
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
@@ -44,8 +31,12 @@ public class CriarCategoria implements Command {
 		ArrayList<Categoria> lista = null;
 		lista = cs.listarCategoria();
 		session.setAttribute("lista", lista);
-				
-		view = request.getRequestDispatcher("categorias.jsp");
+		
+		ArrayList<Sugestao> listaTop = null;
+		listaTop = ss.listarTopSugestao();
+		session.setAttribute("listaTop", listaTop);
+		
+		view = request.getRequestDispatcher("sugestoes.jsp");
 		view.forward(request, response);
 
 

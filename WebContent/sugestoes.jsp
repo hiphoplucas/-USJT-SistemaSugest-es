@@ -21,14 +21,49 @@
     <div class="limitHome">
         <div class="container-fluid">
             <div class="menuSugestoes">
-            <div class="col-md-8">
-                <button>testex</button>
+            <div class="col-md-10">
+                 <select name="categoria">
+                	        <option value="#">*Selecione o Departamento*</option>
+                    <c:if test="${not empty lista}">
+                        <c:forEach var="categoria" items="${lista}">                    
+                            <option value="${categoria.id }">${categoria.categoria }</option>
+                        </c:forEach>
+                    </c:if>
+                </select>
+                <br>${tipousuario}
             </div>
-            <div class="col-md-4">
-                <a href="novaSugestao.jsp"><button class="botao">+ Nova Sugestão</button></a>
-            </div>
-            </div>
+                <div class="col-md-2">
+                    <a href="novaSugestao.jsp"><button class="botao">+ NOVA SUGESTÃO</button></a>
+                </div>
+            </div>    
         </div>
+            <div class="limitSugestao">
+                <div class="container-fluid">
+                    <div class="col-md-8" id=sugestao>
+                    	
+                    </div>
+                    <div class="col-md-4">
+                        <div class="boxPopulares">
+                            <div class="tPopulares">
+                                Populares<br>
+                            </div>
+                                 <c:if test="${not empty lista}">
+                                    <c:forEach var="sugestao" items="${listaTop}">                    
+                                        <div class="subPopulares">
+                                            ${sugestao.titulo } 
+                                        </div>
+                                        <div class="pSugestao">
+                                            ${sugestao.sugestao }
+                                        </div>
+                                        <div class="pData">
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | <spam class="pVerMais"><a value="${sugestao.idSugestao }" href="controller.do?command=ListaComentario"><button type="button"">Ver Mais</a></spam> <br><br>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
+                        </div>
+                    </div>            
+            </div>  
+            </div>
     </div>
     <script src="js/jquery.min.js"></script>
  	<script src="js/bootstrap.min.js"></script>

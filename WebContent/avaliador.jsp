@@ -22,14 +22,51 @@
     <div class="container-fluid">
     <div class="limitHome">
         <div class="conteudoCadastro">
-        <ul>
-            <li>
-                <div class="sT">Avaliadores.</div>
-            </li>
-            <li>
-                <a href="novoAvaliador.jsp"><input type="submit" value="NOVO AVALIADOR" class="botao"></a>
-            </li>
-        </ul>
+        <c:if test="${not empty lista}">
+                <div id="list" class="row">
+
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Especialidade</th>
+                                    <th class="actions">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+          					<c:forEach var="usuario" items="${lista}">
+                                       <tr>
+                                            <td>
+                                               ${usuario.id }
+                                            </td>
+                                            <td>
+                                                ${usuario.nome }
+                                            </td>
+                                            <td>
+                                                ${usuario.email }
+                                            </td>
+                                            <td>
+                                                ${usuario.nomeEspecialidade }
+                                            </td>
+                                            <td class="actions">
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
+                                                <button id="btn${usuario.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.id }">Excluir</button>
+                                            </td>
+                                        </tr>             
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                        <a href="controller.do?command=ListarCategoriaAvaliador"><input type="submit" value="NOVO AVALIADOR" class="botao"></a>
+                    </div>
+                </div>
+                <!-- /#list -->
+               </c:if>
+                
+            
     
         </div>
     </div>

@@ -10,6 +10,8 @@ public class Usuario implements Serializable {
 	private String cpf;
 	private String senha;
 	private int idEspecialidade;
+	private String nomeEspecialidade;
+	private String categoria; 
 	
 	public Usuario() {
 		
@@ -66,4 +68,17 @@ public class Usuario implements Serializable {
 	public void setIdEspecialidade(int idEspecialidade) {
 		this.idEspecialidade = idEspecialidade;
 	}	
+	public String getNomeEspecialidade() {
+		return nomeEspecialidade;
+	}
+	public void setNomeEspecialidade(String nomeEspecialidade) {
+		this.nomeEspecialidade = nomeEspecialidade;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
 }

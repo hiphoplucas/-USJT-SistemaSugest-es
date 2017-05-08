@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Categoria;
-import service.CategoriaService;
+import model.Sugestao;
+import service.SugestaoService;
 
-
-
-public class CriarCategoria implements Command {
+public class CriarSugestao implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		String pId = request.getParameter("id");
-		String pCategoria = request.getParameter("categoria");
-		String pCor = request.getParameter("cor");
+		int pCategoria = Integer.parseInt(request.getParameter("categoria"));
+		String pTitulo = request.getParameter("titulo");
+		String pSugestao = request.getParameter("sugestao");
 		int id = -1;
 		
 		try {
@@ -30,32 +29,29 @@ public class CriarCategoria implements Command {
 
 		}
 
-		Categoria categoria = new Categoria();
-		categoria.setId(id);
-		categoria.setCategoria(pCategoria);
-		categoria.setCor(pCor);
-		CategoriaService cs = new CategoriaService();
-		cs.criar(categoria);
+		Sugestao sugestao = new Sugestao();
+		sugestao.setIdSugestao(id);
+		sugestao.setEspecialidade(pCategoria);
+		sugestao.setTitulo(pTitulo);
+		sugestao.setSugestao(pSugestao);
+		SugestaoService ss = new SugestaoService();
+		ss.novaSugestao(sugestao);
 		
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
-		
-		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
-		session.setAttribute("lista", lista);
 				
-		view = request.getRequestDispatcher("categorias.jsp");
+		view = request.getRequestDispatcher("sugestoes.jsp");
 		view.forward(request, response);
 
 
 	}
 
-	public int busca(Categoria categoria, ArrayList<Categoria> lista) {
-		Categoria to;
+	public int busca(Sugestao sugestao, ArrayList<Sugestao> lista) {
+		Sugestao to;
 		for (int i = 0; i < lista.size(); i++) {
 			to = lista.get(i);
-			if (to.getId() == categoria.getId()) {
+			if (to.getIdSugestao() == sugestao.getIdSugestao()) {
 				return i;
 			}
 		}

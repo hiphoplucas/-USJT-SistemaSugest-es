@@ -27,10 +27,29 @@
         <div class="conteudo">
         <ul>
             <li>
-                <div class="sT">Nova Sugestão.</div>
+                <div class="sT">Qual a sua sugestão?</div>
             </li>
             <li>
-                <input name="sugestao" class="sugestao" type="textarea" placeholder=" Faça aqui a sua sugestão. Com no máximo 600 caracteres."> </li>
+                <select name="categoria">
+                	<option value="#">*Selecione o Departamento*</option>
+                <c:if test="${not empty lista}">
+                <c:forEach var="categoria" items="${lista}">                    
+                    <option value="${categoria.id }">${categoria.categoria }</option>
+                </c:forEach>
+                </c:if>
+                </select>
+            <li>
+            	<div class="sT">Título:</div>
+            </li>
+            <li>
+            	<input name="titulo" type="text" placeholder=" Título">
+            </li>
+            <li>
+            	<div class="sT">Sugestão:</div>
+            </li>
+            <li>
+            	<input name="sugestao" type="text" placeholder=" Sugestão" class="sugestao">
+            </li>
             <li>
                 <input type="submit" name="command" value="CriarSugestao" class="botao">
             </li>
@@ -38,7 +57,6 @@
         </div>
         </form>
     </div>
-    
 </body>
 
 </html>

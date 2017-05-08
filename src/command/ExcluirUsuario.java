@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.MD5;
 import model.Usuario;
 import service.UsuarioService;
 
-public class CriarUsuario implements Command {
+public class ExcluirUsuario implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
@@ -23,7 +22,6 @@ public class CriarUsuario implements Command {
 		String pEmail = request.getParameter("email");
 		String pCpf = request.getParameter("cpf");
 		String pSenha = request.getParameter("senha");
-		
 		int id = -1;
 		try {
 			id = Integer.parseInt(pId);
@@ -36,18 +34,19 @@ public class CriarUsuario implements Command {
 		usuario.setNome(pNome);
 		usuario.setEmail(pEmail);
 		usuario.setCpf(pCpf);
-		usuario.setSenha(MD5.MD5(pSenha));
+		usuario.setSenha(pSenha);
 		UsuarioService us = new UsuarioService();
 
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 
-		us.criar(usuario);
-		ArrayList<Usuario> lista = new ArrayList<>();
-		lista.add(usuario);
+		us.excluir(usuario.getId());
+		@SuppressWarnings("unchecked")
+		ArrayList<Usuario> lista = (ArrayList<Usuario>) session
+				.getAttribute("lista");
+		lista.remove(busca(usuario, lista));
 		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("sugestoes.jsp");
-
+		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
 
 	}

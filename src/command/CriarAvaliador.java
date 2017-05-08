@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.MD5;
 import model.Usuario;
 import service.UsuarioService;
 
-public class CriarUsuario implements Command {
+public class CriarAvaliador implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String pId = request.getParameter("id");
 		String pNome = request.getParameter("nome");
+		int pCategoria = Integer.parseInt(request.getParameter("categoria"));
 		String pEmail = request.getParameter("email");
-		String pCpf = request.getParameter("cpf");
 		String pSenha = request.getParameter("senha");
-		
+		String pCpf = request.getParameter("cpf");
 		int id = -1;
 		try {
 			id = Integer.parseInt(pId);
@@ -34,22 +33,22 @@ public class CriarUsuario implements Command {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
 		usuario.setNome(pNome);
+		usuario.setIdEspecialidade(pCategoria);
 		usuario.setEmail(pEmail);
 		usuario.setCpf(pCpf);
-		usuario.setSenha(MD5.MD5(pSenha));
+		usuario.setSenha(pSenha);
 		UsuarioService us = new UsuarioService();
 
+		us.criarAvaliador(usuario);
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
-
-		us.criar(usuario);
-		ArrayList<Usuario> lista = new ArrayList<>();
-		lista.add(usuario);
+		
+		ArrayList<Usuario> lista = null;
+		lista = us.listarAvaliador();
 		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("sugestoes.jsp");
-
+		
+		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
-
 	}
 
 	public int busca(Usuario usuario, ArrayList<Usuario> lista) {

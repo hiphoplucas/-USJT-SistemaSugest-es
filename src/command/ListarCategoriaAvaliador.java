@@ -14,29 +14,13 @@ import service.CategoriaService;
 
 
 
-public class CriarCategoria implements Command {
+public class ListarCategoriaAvaliador implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		String pId = request.getParameter("id");
-		String pCategoria = request.getParameter("categoria");
-		String pCor = request.getParameter("cor");
-		int id = -1;
 		
-		try {
-			id = Integer.parseInt(pId);
-		} catch (NumberFormatException e) {
-
-		}
-
-		Categoria categoria = new Categoria();
-		categoria.setId(id);
-		categoria.setCategoria(pCategoria);
-		categoria.setCor(pCor);
 		CategoriaService cs = new CategoriaService();
-		cs.criar(categoria);
-		
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
@@ -44,8 +28,10 @@ public class CriarCategoria implements Command {
 		ArrayList<Categoria> lista = null;
 		lista = cs.listarCategoria();
 		session.setAttribute("lista", lista);
-				
-		view = request.getRequestDispatcher("categorias.jsp");
+		
+		//System.out.println(lista.get(0));
+		
+		view = request.getRequestDispatcher("novoAvaliador.jsp");
 		view.forward(request, response);
 
 

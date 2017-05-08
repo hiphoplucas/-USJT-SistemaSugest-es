@@ -27,9 +27,6 @@
         <div class="conteudo">
         <ul>
             <li>
-                <div class="sT">Categoria.</div>
-            </li>
-            <li>
                 <input name="categoria" type="text" placeholder=" Nome da Categoria"> </li>
             <li>
                 <input name="cor"  type="text" placeholder=" Cor da Categoria"> </li>
