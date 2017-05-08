@@ -71,7 +71,12 @@ public class SugestaoDAO {
 					sugestao = new Sugestao();
 					sugestao.setIdSugestao(rs.getInt("idSugestao"));
 					sugestao.setTitulo(rs.getString("titulo"));
-					sugestao.setSugestao(rs.getString("sugestao").substring(0, 100)+"...");
+					if(rs.getString("sugestao").length() < 100){
+						sugestao.setSugestao(rs.getString("sugestao"));
+					}else{
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 100)+"...");
+					}
+					/*sugestao.setSugestao(rs.getString("sugestao").substring(0, 100)+"...");*/
 					sugestao.setData(rs.getString("dataF"));
 					sugestao.setNomeEspecialidade(rs.getString("nomeEspecialidade"));
 					sugestao.setCorEspecialidade(rs.getString("corEspecialidade"));
