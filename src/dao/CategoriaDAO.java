@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.Categoria;
-import model.Usuario;
 
 
 public class CategoriaDAO {
@@ -57,5 +57,29 @@ public class CategoriaDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return categoria;
+	}
+	
+	public ArrayList<Categoria> listarCategoria() {
+		Categoria categoria;
+		ArrayList<Categoria> lista = new ArrayList<>();
+		String sqlSelect = "SELECT idEspecialidade, nomeEspecialidade, corEspecialidade FROM especialidade";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					categoria = new Categoria();
+					categoria.setId(rs.getInt("idEspecialidade"));
+					categoria.setCategoria(rs.getString("nomeEspecialidade"));
+					categoria.setCor(rs.getString("corEspecialidade"));;
+					lista.add(categoria);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
 	}
 }

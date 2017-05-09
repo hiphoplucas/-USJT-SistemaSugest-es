@@ -1,8 +1,9 @@
 package service;
 
+import java.util.ArrayList;
+
 import dao.CategoriaDAO;
 import model.Categoria;
-import model.Usuario;
 
 public class CategoriaService {
 	CategoriaDAO dao = new CategoriaDAO();
@@ -12,5 +13,8 @@ public class CategoriaService {
 	}
 	public Categoria carregar(int id){
 		return dao.carregar(id);
+	}
+	public ArrayList<Categoria> listarCategoria(){
+		return dao.listarCategoria();
 	}
 }

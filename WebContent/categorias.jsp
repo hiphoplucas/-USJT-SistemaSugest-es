@@ -22,17 +22,54 @@
     <div class="container-fluid">
     <div class="limitHome">
         <div class="conteudoCadastro">
-        <ul>
-            <li>
-                <div class="sT">Categorias.</div>
-            </li>
-            <li>
-                <a href="novaCategoria.jsp"><input type="submit" value="NOVA CATEGORIA" class="botao"></a>
-            </li>
-        </ul>
+        
+        
+        	<c:if test="${not empty lista}">
+                <div id="list" class="row">
+
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Categoria</th>
+                                    <th>Cor</th>
+                                    <th class="actions">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+          					<c:forEach var="categoria" items="${lista}">
+                                       <tr>
+                                            <td>
+                                               ${categoria.id }
+                                            </td>
+                                            <td>
+                                                ${categoria.categoria }
+                                            </td>
+                                            <td>
+                                                ${categoria.cor }
+                                            </td>
+                                            <td class="actions">
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
+                                                <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
+                                            </td>
+                                        </tr>             
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                        <a href="novaCategoria.jsp"><input type="submit" value="NOVO CATEGORIA" class="botao"></a>
+                    </div>
+                </div>
+                <!-- /#list -->
+               </c:if>
     
         </div>
     </div>
+    
+    
+    
+    
     </div>
     
     <script src="js/jquery.min.js"></script>

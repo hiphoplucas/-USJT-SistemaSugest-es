@@ -20,22 +20,19 @@
     </div>
     
     <div class="limitHome">
-    <form action="ManterUsuarioAvaliador.do" name="form" method="post">    
+    <form action="controller.do" name="form" method="post">    
         <div class="conteudo">
         <ul>
             <li>
-                <div class="sT">Editando os meus dados.</div>
-            </li>
-            <li>
                 <input name="nome" type="text" placeholder=" Nome Completo"> </li>
             <li>
-                <select>
-                    <option value="#">*Selecione a Categoria do avaliador*</option>
-                    <option value="1">Financeiro</option>
-                    <option value="2">TI</option>
-                    <option value="3">Segurança</option>
-                    <option value="4">Administração</option>
-                    <option value="5">Limpeza</option>
+                <select name="categoria">
+                	<option value="#">*Selecione a Categoria do avaliador*</option>
+                <c:if test="${not empty lista}">
+                <c:forEach var="categoria" items="${lista}">                    
+                    <option value="${categoria.id }">${categoria.categoria }</option>
+                </c:forEach>
+                </c:if>
                 </select>
             <li>
             <li>
@@ -45,7 +42,7 @@
             <li>
                 <input name="cpf" type="text" placeholder=" CPF"> </li>                
             <li>
-                <input type="submit" name="acao" value="SALVAR" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarAvaliador">SALVAR</button>
             </li>
         </ul>    
         </div>

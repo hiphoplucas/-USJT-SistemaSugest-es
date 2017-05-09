@@ -23,18 +23,15 @@
     </div>
     
     <div class="limitHome">
-        <form action="ManterCategoria.do" name="form" method="post">
+        <form action="controller.do"  method="post">
         <div class="conteudo">
         <ul>
-            <li>
-                <div class="sT">Categoria.</div>
-            </li>
             <li>
                 <input name="categoria" type="text" placeholder=" Nome da Categoria"> </li>
             <li>
                 <input name="cor"  type="text" placeholder=" Cor da Categoria"> </li>
             <li>
-                <input type="submit" name="acao" value="SALVAR" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarCategoria">SALVAR</button>
             </li>
         </ul>    
         </div>

@@ -21,12 +21,12 @@
     </div>
 </header>
 <body>
-<form action="ManterUsuario.do" name="form" method="post">
+
     <div class="conteudo">
         <div class="limit">
             <div class="menu">
                 <div class="opcoes" id="esquerdo">
-                    
+                    <form action="controller.do" method="post">
                         <ul>
                             <li>
                                 <div class="menuTitulo">Cadastre-se</div>
@@ -41,17 +41,19 @@
                             <li>
                                 <input name="cpf" type="text" placeholder=" CPF"> </li>
                             <li>
-                                <input name="senha" type="text" placeholder=" Senha"> </li>
+                                <input name="senha" type="password" placeholder=" Senha"> </li>
                             <li>
-                                <input type="text" placeholder=" Confirme a Senha"> </li>
+                                <input type="password" placeholder=" Confirme a Senha"> </li>
                             <li>
-                                <input type="submit" name="acao" value="CADASTRAR" id="cadastrar">
+                                <button type="submit" id="cadastrar" name="command" value="CriarUsuario">SALVAR</button>
                             </li>
                         </ul>
+                     </form>
                     </div>
                
                 <div class="opcoes" id="direito">
-                    
+                    <form action="controller.do" method="post">
+                    <input type="hidden" name="command" value="Login">
                         <ul>
                             <li>
                                 <div class="menuTitulo">Login</div>
@@ -61,18 +63,18 @@
                             </li>
                             <li>
                                 <li>
-                                    <input type="text" placeholder=" Email"> </li>
+                                    <input type="text" name="email" placeholder=" Email"> </li>
                                 <li>
-                                    <input type="text" placeholder=" Senha "> </li>
+                                    <input type="password" name="senha" placeholder=" Senha "> </li>
                                 <li>
-                                    <button type="button">LOGIN</button>
+                                    <button type="submit">LOGIN</button>
                                 </li>
                         </ul>
-                    
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-   </form>
+   
 </body>
 </html>

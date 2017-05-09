@@ -7,26 +7,28 @@ public class Usuario implements Serializable {
 	private int id;
 	private String nome;
 	private String email;
-	private String cfp;
+	private String cpf;
 	private String senha;
 	private int idEspecialidade;
+	private String nomeEspecialidade;
+	private String categoria; 
 	
 	public Usuario() {
 		
 	}
-	public Usuario(int id, String nome, String email, String cfp, String senha) {
+	public Usuario(int id, String nome, String email, String cpf, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.cfp = cfp;
+		this.cpf = cpf;
 		this.senha = senha;
 	}
-	public Usuario(int id, String nome, String email, String cfp, String senha, int idEspecialidade) {
+	public Usuario(int id, String nome, String email, String cpf, String senha, int idEspecialidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.cfp = cfp;
+		this.cpf = cpf;
 		this.senha = senha;
 		this.idEspecialidade = idEspecialidade;
 	}
@@ -48,11 +50,11 @@ public class Usuario implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getCfp() {
-		return cfp;
+	public String getCpf() {
+		return cpf;
 	}
-	public void setCfp(String cfp) {
-		this.cfp = cfp;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	public String getSenha() {
 		return senha;
@@ -66,4 +68,17 @@ public class Usuario implements Serializable {
 	public void setIdEspecialidade(int idEspecialidade) {
 		this.idEspecialidade = idEspecialidade;
 	}	
+	public String getNomeEspecialidade() {
+		return nomeEspecialidade;
+	}
+	public void setNomeEspecialidade(String nomeEspecialidade) {
+		this.nomeEspecialidade = nomeEspecialidade;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
 }
