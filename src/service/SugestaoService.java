@@ -26,7 +26,7 @@ public class SugestaoService {
 	public ArrayList<Sugestao> participacao(){
 		return dao.participacao();
 	}
-	public void atualizar(int idSugestao){
-		dao.atualizar(idSugestao);
+	public void aprovar(int idSugestao){
+		dao.aprovar(idSugestao);
 	}
 }

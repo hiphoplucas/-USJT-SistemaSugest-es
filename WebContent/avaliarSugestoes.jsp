@@ -45,7 +45,7 @@
     			<div class="tPopulares">
     				Ações<br>
     			</div>
-    			<button type="submit" class="botaoVerde" name="command" value="CriarUsuario">APROVAR</button><br>
+    			<a href="controller.do?command=AprovaSugestao&idSugestao=${sugestao.idSugestao }"><button type="button" class="botaoVerde">APROVAR</button></a></spam>
     			<button type="submit" class="botaoCinza" name="command" value="CriarUsuario">INATIVAR</button><br>
     			<div class="tPopulares">
     				Recusar<br>

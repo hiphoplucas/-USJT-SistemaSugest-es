@@ -93,7 +93,7 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarSugestaoAvalia(int idEspecialidade) {
 		Sugestao sugestao = new Sugestao();
 		ArrayList<Sugestao> listaSugestaoAvalia = new ArrayList<>();
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE especialidade.idEspecialidade = ?";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE especialidade.idEspecialidade = ? and status = 'inativo'";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -168,7 +168,8 @@ public class SugestaoDAO {
 		}
 		return listaParticipacao;
 	}
-	public void atualizar(int idSugestao) {
+	
+	public void aprovar(int idSugestao) {
 		String sqlUpdate = "update sugestao set status = 'ativo' where idSugestao = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
