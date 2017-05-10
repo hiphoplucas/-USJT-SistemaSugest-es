@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import model.Categoria;
 import model.Usuario;
 
 public class UsuarioDAO {
@@ -122,7 +121,7 @@ public class UsuarioDAO {
 	
 	public boolean login(String usuario, String senha, HttpServletRequest request) {
 		
-		String sqlSelect = "SELECT idusuario, nome, email, cpf, tipo FROM usuarios WHERE Email = ? AND senha = ?";
+		String sqlSelect = "SELECT idusuario, nome, email, cpf, tipo, idEspecialidade FROM usuarios WHERE Email = ? AND senha = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			
@@ -141,6 +140,7 @@ public class UsuarioDAO {
 					HttpSession sessao = request.getSession();
 					sessao.setAttribute("tipousuario", rs.getInt("tipo"));
 					sessao.setAttribute("idusuario", rs.getInt("idusuario"));
+					sessao.setAttribute("idespecialidade", rs.getInt("idespecialidade"));
 					
 					return true;
 					

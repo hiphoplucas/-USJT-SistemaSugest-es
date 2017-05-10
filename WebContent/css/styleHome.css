@@ -28,6 +28,11 @@ html{
     border-right: 1px solid #ccc;
 }
 
+#sugestaoAvalia{
+    height: 450px;
+    border-right: 1px solid #ccc;
+}
+
 .boxBorda{
     height: 450px;
     border-right: 1px solid #ccc
@@ -92,8 +97,34 @@ html{
     background: #5cb85c;
     color: #fff;
     height: 30px;
+    width: 100%;    
+    border: 0px
+}
+
+.botaoVerde{
+    background: #5cb85c;
+    color: #fff;
+    height: 30px;
     width: 100%;
-    
+    border: 0px;    
+}
+
+.botaoCinza{
+    background: #999;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    border: 0px;  
+    margin-top: 5px;  
+}
+
+.botaoVermelho{
+    background: #d9534f;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    border: 0px;
+    margin-top: 5px;    
 }
 
 .coneudo input textarea{
@@ -278,6 +309,12 @@ html{
 .vsUsuario{
 	font-size: 16px;
     color: #23527b;
+}
+
+.feedback{
+	width: 100%;
+    height: 125px;
+    border: 1px solid #cccccc;	
 }
 
 @media (max-width: 990px){

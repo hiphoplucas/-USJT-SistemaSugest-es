@@ -90,6 +90,37 @@ public class SugestaoDAO {
 		}
 		return listaTop;
 	}
+	public ArrayList<Sugestao> listarSugestaoAvalia(int idEspecialidade) {
+		Sugestao sugestao = new Sugestao();
+		ArrayList<Sugestao> listaSugestaoAvalia = new ArrayList<>();
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE especialidade.idEspecialidade = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idEspecialidade);
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("idSugestao"));
+					sugestao.setTitulo(rs.getString("titulo"));
+					if(rs.getString("sugestao").length() < 150){
+						sugestao.setSugestao(rs.getString("sugestao"));
+					}else{
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 150)+"...");
+					}
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
+					sugestao.setCorEspecialidade(rs.getString("cor"));
+					listaSugestaoAvalia.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestaoAvalia;
+	}
 	public Sugestao carregar(int id) {
 		Sugestao sugestao = new Sugestao();
 		sugestao.setIdSugestao(id);
@@ -136,5 +167,16 @@ public class SugestaoDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return listaParticipacao;
-	}	
+	}
+	public void atualizar(int idSugestao) {
+		String sqlUpdate = "update sugestao set status = 'ativo' where idSugestao = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, idSugestao);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

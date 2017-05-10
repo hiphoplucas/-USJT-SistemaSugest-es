@@ -10,7 +10,7 @@
             <ul>
                 <li><a href="controller.do?command=CarregaHome">SUGESTÕES</a></li>
                 <li><a href="controller.do?command=CarregaUsuario&idUsuario=${idusuario }">MEUS DADOS</a></li>
-                <li><a href="algumaDuvida.jsp">ALGUMA DUVIDA</a></li>
+                <li><a href="controller.do?command=CarregaSugestaoAvalia&IdEspecialidade=${idespecialidade }">AVALIAR SUGESTÕES</a></li>
                 <li><a href="controller.do?command=ListarAvaliador">AVALIADOR</a></li>
                 <li><a href="controller.do?command=ListarCategoria">CATEGORIAS</a></li>
                 <li><a href="controller.do?command=CarregaRelParticipacao">PARTICIPAÇÃO</a></li>
