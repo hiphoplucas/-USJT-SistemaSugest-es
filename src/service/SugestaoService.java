@@ -20,4 +20,7 @@ public class SugestaoService {
 	public Sugestao carregar(int id){
 		return dao.carregar(id);
 	}
+	public ArrayList<Sugestao> participacao(){
+		return dao.participacao();
+	}
 }

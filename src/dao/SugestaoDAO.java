@@ -115,4 +115,26 @@ public class SugestaoDAO {
 		}
 		return sugestao;
 	}
+	public ArrayList<Sugestao> participacao() {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaParticipacao = new ArrayList<>();
+		String sqlSelect = "SELECT usuarios.nome as nome, count(sugestao.Colaborador) as quantidade from sugestao join usuarios on usuarios.idusuario = sugestao.Colaborador group by sugestao.Colaborador order by quantidade desc;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setNomeColaborador(rs.getString("nome"));
+					sugestao.setpQuantidade(rs.getInt("quantidade"));
+					listaParticipacao.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaParticipacao;
+	}	
 }

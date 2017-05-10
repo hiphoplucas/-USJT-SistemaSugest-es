@@ -94,7 +94,7 @@ public class UsuarioDAO {
 	public Usuario carregar(int id) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
-		String sqlSelect = "SELECT nome, email, cpf from usuarios where idusuario = ?";
+		String sqlSelect = "SELECT nome, email, senha, cpf from usuarios WHERE idusuario = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -103,6 +103,7 @@ public class UsuarioDAO {
 				if (rs.next()) {
 					usuario.setNome(rs.getString("nome"));
 					usuario.setEmail(rs.getString("email"));
+					usuario.setCpf(rs.getString("senha"));
 					usuario.setCpf(rs.getString("cpf"));
 				} else {
 					usuario.setId(-1);

@@ -9,11 +9,11 @@
         <div class="limitHome">            
             <ul>
                 <li><a href="controller.do?command=CarregaHome">SUGESTÕES</a></li>
-                <li><a href="meusDados.jsp">MEUS DADOS</a></li>
+                <li><a href="controller.do?command=CarregaUsuario&idUsuario=${idusuario }">MEUS DADOS</a></li>
                 <li><a href="algumaDuvida.jsp">ALGUMA DUVIDA</a></li>
                 <li><a href="controller.do?command=ListarAvaliador">AVALIADOR</a></li>
                 <li><a href="controller.do?command=ListarCategoria">CATEGORIAS</a></li>
-                <li><a href="participacao.jsp">PARTICIPAÇÃO</a></li>
+                <li><a href="controller.do?command=CarregaRelParticipacao">PARTICIPAÇÃO</a></li>
                 <li><a href="sugestoesAprovadas.jsp">SUGESTÕES APROVADAS</a></li>
                 <li><a href="indiceGeral.jsp">ÍNDICE GERAL</a></li>
             </ul>

@@ -25,6 +25,7 @@
     <div class="limitHome">
         <form action="controller.do"  method="post">
         <div class="conteudo">
+        <input type="hidden" name="idUsuario" value="${idusuario }">
         <ul>
             <li>
                 <div class="sT">Qual a sua sugestão?</div>
@@ -51,7 +52,7 @@
             	<input name="sugestao" type="text" placeholder=" Sugestão" class="sugestao">
             </li>
             <li>
-                <input type="submit" name="command" value="CriarSugestao" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarSugestao">SALVAR</button>
             </li>
         </ul>    
         </div>
