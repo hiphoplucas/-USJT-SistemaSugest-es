@@ -26,10 +26,12 @@ html{
 #sugestao{
     height: 450px;
     border-right: 1px solid #ccc;
+    margin-left: -20px;
 }
 
 #sugestaoAvalia{
     height: 450px;
+    margin-left: -20px;
 }
 
 .boxBorda{
@@ -271,7 +273,7 @@ html{
 }
 
 .boxSugestao{
-	margin-left: -84px;
+	margin-left: -64px;
 	margin-bottom: 10px;
 	padding-left: 15px;
 	border-sizing: border-box;
@@ -296,6 +298,12 @@ html{
     border: 1px solid #cccccc;
 }
 
+.vsAcao textarea{
+	width: 100%;
+    height: 100px;
+    border: 1px solid #cccccc;
+}
+
 .vsAcao button{
 	background: #5cb85c;
     color: #fff;
@@ -312,7 +320,7 @@ html{
 
 .feedback{
 	width: 100%;
-    height: 125px;
+    height: 120px;
     border: 1px solid #cccccc;	
 }
 

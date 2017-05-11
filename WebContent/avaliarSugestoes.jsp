@@ -6,9 +6,10 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestão</title>
+    <title>USJT - SISTEMA SUGESTÕES - AVALIAR SUGESTÃO</title>
 </head>
 
 <body>
@@ -42,6 +43,9 @@
     			<div class="vsSugestao">
     			Status: ${sugestao.status } 
     			</div>
+    			<div class="vsSugestao">
+    			FeedBack: ${sugestao.feedback } 
+    			</div>
     			<div class="vsAcao">
     				<form action="controller.do"  method="post">
     					<input type="hidden" name="idSugestao" value="${sugestao.idSugestao }">
@@ -54,12 +58,17 @@
     				Ações<br>
     			</div>
     			<a href="controller.do?command=AprovaSugestao&idSugestao=${sugestao.idSugestao }"><button type="button" class="botaoVerde">APROVAR</button></a></spam>
-    			<button type="submit" class="botaoCinza" name="command" value="CriarUsuario">INATIVAR</button><br>
+    			<a href="controller.do?command=InativaSugestao&idSugestao=${sugestao.idSugestao }"><button type="button" class="botaoCinza">INATIVAR</button></a><br>
     			<div class="tPopulares">
     				Recusar<br>
-    			</div>    		
-    			<input type="text" placeholder=" Deixe um feedback para o colaborador" name="comentario" class="feedback"> <br>
-    			<button type="submit" class="botaoVermelho" name="command" value="CriarUsuario">RECUSAR</button><br>	
+    			</div>
+    			<div class="avaliacao">
+    				<form action="controller.do" name="form" method="post">    		
+    					<input type="hidden" name="idSugestao" value="${sugestao.idSugestao }">
+    					<textarea placeholder=" Deixe um feedback para o colaborador" name="feedback" class="feedback"></textarea> <br>
+    					<button type="submit" name="command" value="RecusaSugestao" class="botaoVermelho">RECUSAR</button><br></a>
+    				</form>	
+    			</div>
     		</div>
     	</div>
     	</div>

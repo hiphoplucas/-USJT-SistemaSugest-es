@@ -6,9 +6,10 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestões</title>
+    <title>USJT - SISTEMA SUGESTÕES - AVALIAR SUGESTÕES</title>
 </head>
 
 <body>

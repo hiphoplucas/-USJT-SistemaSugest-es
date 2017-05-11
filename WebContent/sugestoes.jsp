@@ -6,9 +6,10 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestões</title>
+    <title>USJT - SISTEMA SUGESTÕES - SUGESTÕES</title>
 </head>
 
 <body>
@@ -27,18 +28,20 @@
         <div class="container-fluid">
             <div class="menuSugestoes">
             <div class="col-md-10">
-                 <select name="categoria">
+                 <form action="controller.do"  method="post">
+                 	<select name="categoria">
                 	        <option value="*">*Selecione o Departamento*</option>
-                    <c:if test="${not empty lista}">
-                        <c:forEach var="categoria" items="${lista}">                    
-                            <option value="${categoria.id }">${categoria.categoria }</option>
-                        </c:forEach>
-                    </c:if>
-                </select>
-                <button class="bOk">OK</button>
+                    	<c:if test="${not empty lista}">
+                        	<c:forEach var="categoria" items="${lista}">                    
+                            	<option value="${categoria.id }">${categoria.categoria }</option>
+                        	</c:forEach>
+                    	</c:if>
+                	</select>
+              	  	<button type="submit" name="command" value="CarregaHomeCategoria" class="bOk">OK</button>
+                 </form>
             </div>
                 <div class="col-md-2">
-                    <a href="novaSugestao.jsp"><button class="botao">+ NOVA SUGESTÃO</button></a>
+                    <c:if test="${tipousuario == 1 }"><a href="novaSugestao.jsp"><button class="botao">+ NOVA SUGESTÃO</button></a></c:if>
                 </div>
             </div>    
         </div>

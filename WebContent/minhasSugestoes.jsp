@@ -6,16 +6,17 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestões</title>
+    <title>USJT - SISTEMA SUGESTÕES - MINHAS SUGESTÕES</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="top">
             <div class="limitHome">
-                <div class="col-md-9"><div id="tituloHome">Avaliar Sugestões</div></div>
+                <div class="col-md-9"><div id="tituloHome">Minhas Sugestões</div></div>
                 <c:import url="logoInterno.jsp"/>
 				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
 
@@ -42,8 +43,8 @@
             <div class="limitSugestao">
                 <div class="container-fluid">
                     <div class="col-md-12" id=sugestaoAvalia>
-                                 <c:if test="${not empty listaSugestaoAvalia}">
-                                    <c:forEach var="sugestao" items="${listaSugestaoAvalia}">                    
+                                 <c:if test="${not empty listaSugestaoUsuario}">
+                                    <c:forEach var="sugestao" items="${listaSugestaoUsuario}">                    
                                         <div style="border-left: 3px solid  ${sugestao.corEspecialidade }; " class="boxSugestao">
                                         <div class="titulo">
                                             ${sugestao.titulo } 
@@ -52,7 +53,7 @@
                                             ${sugestao.sugestao }
                                         </div>
                                         <div class="pData">
-                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | Status atual: ${sugestao.status } | <spam class="pVerMais"><a href="controller.do?command=CarregaSugestaoPAvalia&id=${sugestao.idSugestao }"><button type="button"">Avaliar a Sugestão</button></a></spam> <br><br>
+                                            ${sugestao.data } | ${sugestao.nomeEspecialidade } | Status atual: ${sugestao.status } | <spam class="pVerMais"><a href="controller.do?command=CarregaSugestaoUsuario&id=${sugestao.idSugestao }"><button type="button"">Ver Sugestão</button></a></spam> <br><br>
                                         </div>
                                         </div>
                                     </c:forEach>

@@ -5,7 +5,7 @@
                 <li><a href="controller.do?command=CarregaHome">SUGESTÕES</a></li>
                 <li><a href="controller.do?command=CarregaUsuario&idUsuario=${idusuario }">MEUS DADOS</a></li>
                 <li><a href="algumaDuvida.jsp">ALGUMA DUVIDA ?</a></li>
-                <c:if test="${tipousuario == 1 }"><li><a href="#">MINHAS SUGESTÕES</a></li></c:if>
+                <c:if test="${tipousuario == 1 }"><li><a href="controller.do?command=CarregaMinhaSugestao&idUsuario=${idusuario }">MINHAS SUGESTÕES</a></li></c:if>
                 <c:if test="${tipousuario == 2 }"><li><a href="controller.do?command=CarregaSugestaoAvalia&IdEspecialidade=${idespecialidade }">AVALIAR SUGESTÕES</a></li></c:if>
                 <c:if test="${tipousuario == 2 }"><li><a href="#">RANKING</a></li></c:if>
                 <c:if test="${tipousuario == 2 }"><li><a href="#">INDICE DE APROVAÇÃO</a></li></c:if>

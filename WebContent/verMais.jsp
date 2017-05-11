@@ -6,9 +6,11 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestão</title>
+    <c:import url="icon.jsp"/>
+    <title>USJT - SISTEMA SUGESTÕES - VER MAIS</title>
 </head>
 
 <body>
@@ -43,8 +45,8 @@
     				<form action="controller.do"  method="post">
     					<input type="hidden" name="idSugestao" value="${sugestao.idSugestao }">
     					<input type="hidden" name="idUsuario" value="${idusuario }">
-    					<input type="text" placeholder=" Faça aqui seu comentário sobre essa sugestão" name="comentario"> <br>
-    					<button type="submit" class="botao" name="command" value="CriarComentario">SALVAR</button>
+    					<c:if test="${tipousuario == 1 }"><textarea placeholder=" Faça aqui seu comentário sobre essa sugestão" name="comentario"></textarea> <br></c:if>
+    					<c:if test="${tipousuario == 1 }"><button type="submit" class="botao" name="command" value="CriarComentario">SALVAR</button></c:if>
     				</form>
     			</div>
     		</div>

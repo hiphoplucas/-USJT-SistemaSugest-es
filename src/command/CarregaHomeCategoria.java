@@ -14,11 +14,14 @@ import model.Sugestao;
 import service.CategoriaService;
 import service.SugestaoService;
 
-public class CarregaMinhaSugestao implements Command {
+
+
+public class CarregaHomeCategoria implements Command {
+
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		String pIdEspecialidade = request.getParameter("categoria");
 		
 		CategoriaService cs = new CategoriaService();
 		SugestaoService ss = new SugestaoService();
@@ -30,14 +33,30 @@ public class CarregaMinhaSugestao implements Command {
 		lista = cs.listarCategoria();
 		session.setAttribute("lista", lista);
 		
-		ArrayList<Sugestao> listaSugestaoUsuario = null;
-		listaSugestaoUsuario = ss.listarSugestaoUsuario(pIdUsuario);
-		session.setAttribute("listaSugestaoUsuario", listaSugestaoUsuario);
+		ArrayList<Sugestao> listaTop = null;
+		listaTop = ss.listarTopSugestao();
+		session.setAttribute("listaTop", listaTop);
 		
-		view = request.getRequestDispatcher("minhasSugestoes.jsp");
+		ArrayList<Sugestao> listaSugestao = null;
+		listaSugestao = ss.listarSugestaoCategoria(pIdEspecialidade);
+		session.setAttribute("listaSugestao", listaSugestao);
+		
+		view = request.getRequestDispatcher("sugestoes.jsp");
 		view.forward(request, response);
 		
 
 
 	}
+
+	public int busca(Categoria categoria, ArrayList<Categoria> lista) {
+		Categoria to;
+		for (int i = 0; i < lista.size(); i++) {
+			to = lista.get(i);
+			if (to.getId() == categoria.getId()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 }

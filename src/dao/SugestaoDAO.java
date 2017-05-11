@@ -63,7 +63,7 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarSugestao() {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE status='ativo'";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE status='ativo' order by data desc";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -72,10 +72,41 @@ public class SugestaoDAO {
 					sugestao = new Sugestao();
 					sugestao.setIdSugestao(rs.getInt("idSugestao"));
 					sugestao.setTitulo(rs.getString("titulo"));
-					if(rs.getString("sugestao").length() < 100){
+					if(rs.getString("sugestao").length() < 95){
 						sugestao.setSugestao(rs.getString("sugestao"));
 					}else{
-						sugestao.setSugestao(rs.getString("sugestao").substring(0, 100)+"...");
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 95)+"...");
+					}
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
+					sugestao.setCorEspecialidade(rs.getString("cor"));
+					listaTop.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaTop;
+	}
+	public ArrayList<Sugestao> listarSugestaoCategoria(String idEspecialidade) {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaTop = new ArrayList<>();
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE status='ativo' and sugestao.Especialidade = ? order by data desc";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setString(1, idEspecialidade);
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("idSugestao"));
+					sugestao.setTitulo(rs.getString("titulo"));
+					if(rs.getString("sugestao").length() < 95){
+						sugestao.setSugestao(rs.getString("sugestao"));
+					}else{
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 95)+"...");
 					}
 					sugestao.setData(rs.getString("data"));
 					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
@@ -103,10 +134,10 @@ public class SugestaoDAO {
 					sugestao = new Sugestao();
 					sugestao.setIdSugestao(rs.getInt("idSugestao"));
 					sugestao.setTitulo(rs.getString("titulo"));
-					if(rs.getString("sugestao").length() < 150){
+					if(rs.getString("sugestao").length() < 145){
 						sugestao.setSugestao(rs.getString("sugestao"));
 					}else{
-						sugestao.setSugestao(rs.getString("sugestao").substring(0, 150)+"...");
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 145)+"...");
 					}
 					sugestao.setData(rs.getString("data"));
 					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
@@ -157,7 +188,7 @@ public class SugestaoDAO {
 	public Sugestao carregar(int id) {
 		Sugestao sugestao = new Sugestao();
 		sugestao.setIdSugestao(id);
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, status FROM sugestao WHERE idSugestao = ?";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, status, feedback FROM sugestao WHERE idSugestao = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -167,6 +198,11 @@ public class SugestaoDAO {
 					sugestao.setTitulo(rs.getString("titulo"));
 					sugestao.setSugestao(rs.getString("sugestao"));
 					sugestao.setStatus(rs.getString("status"));
+					if(rs.getString("feedback") == null ){
+						sugestao.setFeedback("O avaliador responsável ainda não passou um feedback para a sua sugestão.");
+					}else{
+						sugestao.setFeedback(rs.getString("feedback"));
+					}
 				} else {
 					sugestao.setIdSugestao(-1);
 					sugestao.setTitulo(null);
@@ -180,6 +216,7 @@ public class SugestaoDAO {
 		}
 		return sugestao;
 	}
+	
 	public ArrayList<Sugestao> participacao() {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaParticipacao = new ArrayList<>();
@@ -209,6 +246,40 @@ public class SugestaoDAO {
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setInt(1, idSugestao);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void inativar(int idSugestao) {
+		String sqlUpdate = "update sugestao set status = 'inativa' where idSugestao = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, idSugestao);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void recusar(int idSugestao) {
+		String sqlUpdate = "update sugestao set status = 'recusada' where idSugestao = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, idSugestao);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void atualizaFeedback(int idSugestao, String feedback) {
+		String sqlUpdate = "update sugestao set feedback = ? where idSugestao = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setString(1, feedback);
+			stm.setInt(2, idSugestao);
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
