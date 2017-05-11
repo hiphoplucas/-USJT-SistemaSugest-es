@@ -16,8 +16,13 @@
         <div class="top">
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Avaliar Sugestão</div></div>
+                <c:import url="logoInterno.jsp"/>
+				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
     <div class="limitHome">
     	<div class="vSugestao">
     	<div class="container-fluid">
@@ -33,6 +38,9 @@
     			</div>
     			<div class="vsSugestao">
     			${sugestao.sugestao }
+    			</div>
+    			<div class="vsSugestao">
+    			Status: ${sugestao.status } 
     			</div>
     			<div class="vsAcao">
     				<form action="controller.do"  method="post">

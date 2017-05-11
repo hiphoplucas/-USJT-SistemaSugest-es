@@ -16,6 +16,7 @@ public class Sugestao{
    private String corEspecialidade;
    public static int idColaborador;
    private int pQuantidade;
+   private String status;
    
    public Sugestao() {
    }
@@ -151,6 +152,14 @@ public int getpQuantidade() {
 
 public void setpQuantidade(int pQuantidade) {
 	this.pQuantidade = pQuantidade;
+}
+
+public String getStatus() {
+	return status;
+}
+
+public void setStatus(String status) {
+	this.status = status;
 }
    
    

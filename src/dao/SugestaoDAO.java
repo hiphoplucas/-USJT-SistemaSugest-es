@@ -93,7 +93,7 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarSugestaoAvalia(int idEspecialidade) {
 		Sugestao sugestao = new Sugestao();
 		ArrayList<Sugestao> listaSugestaoAvalia = new ArrayList<>();
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE especialidade.idEspecialidade = ? and status = 'inativo'";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor, sugestao.status as status FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE especialidade.idEspecialidade = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -111,6 +111,7 @@ public class SugestaoDAO {
 					sugestao.setData(rs.getString("data"));
 					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
 					sugestao.setCorEspecialidade(rs.getString("cor"));
+					sugestao.setStatus(rs.getString("status"));
 					listaSugestaoAvalia.add(sugestao);
 				}
 			} catch (SQLException e) {
@@ -121,10 +122,42 @@ public class SugestaoDAO {
 		}
 		return listaSugestaoAvalia;
 	}
+	public ArrayList<Sugestao> listarSugestaoUsuario(int idUsuario) {
+		Sugestao sugestao = new Sugestao();
+		ArrayList<Sugestao> listaSugestaoUsuario = new ArrayList<>();
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor, sugestao.status as status FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE sugestao.Colaborador = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idUsuario);
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("idSugestao"));
+					sugestao.setTitulo(rs.getString("titulo"));
+					if(rs.getString("sugestao").length() < 150){
+						sugestao.setSugestao(rs.getString("sugestao"));
+					}else{
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 150)+"...");
+					}
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
+					sugestao.setCorEspecialidade(rs.getString("cor"));
+					sugestao.setStatus(rs.getString("status"));
+					listaSugestaoUsuario.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestaoUsuario;
+	}
 	public Sugestao carregar(int id) {
 		Sugestao sugestao = new Sugestao();
 		sugestao.setIdSugestao(id);
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao FROM sugestao WHERE idSugestao = ?";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, status FROM sugestao WHERE idSugestao = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -133,6 +166,7 @@ public class SugestaoDAO {
 				if (rs.next()) {
 					sugestao.setTitulo(rs.getString("titulo"));
 					sugestao.setSugestao(rs.getString("sugestao"));
+					sugestao.setStatus(rs.getString("status"));
 				} else {
 					sugestao.setIdSugestao(-1);
 					sugestao.setTitulo(null);

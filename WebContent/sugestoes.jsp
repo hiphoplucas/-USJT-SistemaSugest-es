@@ -15,9 +15,14 @@
     <div class="container-fluid">
         <div class="top">
             <div class="limitHome">
-                <div class="col-md-9"><div id="tituloHome">Sugestões</div></div>
+                <div class="col-md-9"><div id="tituloHome">Sugestão</div></div>
+                <c:import url="logoInterno.jsp"/>
+				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
     <div class="limitHome">
         <div class="container-fluid">
             <div class="menuSugestoes">
