@@ -21,7 +21,6 @@
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Nova Categoria</div></div>
                 <c:import url="logoInterno.jsp"/>
-				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
 
 			</div>
 		</div>

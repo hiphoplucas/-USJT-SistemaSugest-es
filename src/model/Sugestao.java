@@ -16,7 +16,10 @@ public class Sugestao{
    private String corEspecialidade;
    public static int idColaborador;
    private int pQuantidade;
-   private String status;
+   private int aprovadas;
+   private int total;
+
+private String status;
    
    public Sugestao() {
    }
@@ -161,7 +164,21 @@ public String getStatus() {
 public void setStatus(String status) {
 	this.status = status;
 }
-   
+
+public int getAprovadas() {
+	return aprovadas;
+}
+
+public void setAprovadas(int aprovadas) {
+	this.aprovadas = aprovadas;
+}
+public int getTotal() {
+	return total;
+}
+
+public void setTotal(int total) {
+	this.total = total;
+}   
    
    
 }

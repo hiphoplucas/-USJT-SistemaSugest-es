@@ -18,13 +18,12 @@
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Participações</div></div>
                 <c:import url="logoInterno.jsp"/>
-				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
 
 			</div>
 		</div>
 	</div>
                 <c:import url="menu.jsp"/>
-    </div>
+    
     <div class="container-fluid">
     <div class="limitHome">
         <div class="conteudoCadastro">
@@ -42,13 +41,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="sugetao" items="${listaParticipacao}">
+          					<c:forEach var="sugestao" items="${listaParticipacao}">
                                        <tr>
                                             <td>
-                                               ${sugestao.nomecolaborador }
+                                               ${sugestao.nomeColaborador }
                                             </td>
                                             <td>
-                                                ${sugestao.pquantidade }
+                                                ${sugestao.pQuantidade }
                                             </td>
                                 </tr>             
                             </c:forEach>

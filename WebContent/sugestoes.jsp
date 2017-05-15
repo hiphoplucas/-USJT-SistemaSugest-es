@@ -18,7 +18,6 @@
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Sugestão</div></div>
                 <c:import url="logoInterno.jsp"/>
-				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
 
 			</div>
 		</div>
@@ -30,10 +29,10 @@
             <div class="col-md-10">
                  <form action="controller.do"  method="post">
                  	<select name="categoria">
-                	        <option value="*">*Selecione o Departamento*</option>
+                	        <option value=" > 0">*Selecione o Departamento*</option>
                     	<c:if test="${not empty lista}">
                         	<c:forEach var="categoria" items="${lista}">                    
-                            	<option value="${categoria.id }">${categoria.categoria }</option>
+                            	<option value=" = ${categoria.id }">${categoria.categoria }</option>
                         	</c:forEach>
                     	</c:if>
                 	</select>

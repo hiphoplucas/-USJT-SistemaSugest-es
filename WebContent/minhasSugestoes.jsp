@@ -18,7 +18,6 @@
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Minhas Sugestões</div></div>
                 <c:import url="logoInterno.jsp"/>
-				<div class="col-md-1"><a href="index.jsp">Sair</a></div>
 
 			</div>
 		</div>
@@ -28,15 +27,18 @@
         <div class="container-fluid">
             <div class="menuSugestoes">
             <div class="col-md-10">
-                 <select name="categoria">
-                	        <option value="*">*Selecione o Departamento*</option>
-                    <c:if test="${not empty lista}">
-                        <c:forEach var="categoria" items="${lista}">                    
-                            <option value="${categoria.id }">${categoria.categoria }</option>
-                        </c:forEach>
-                    </c:if>
-                </select>
-                <button class="bOk">OK</button>
+                 <form action="controller.do"  method="post">
+                 <input type="hidden" name="iusuario" value="${idusuario }">
+                 	<select name="categoria">
+                	        <option value=" > 0">*Selecione o Departamento*</option>
+                    	<c:if test="${not empty lista}">
+                        	<c:forEach var="categoria" items="${lista}">                    
+                            	<option value=" = ${categoria.id }">${categoria.categoria }</option>
+                        	</c:forEach>
+                    	</c:if>
+                	</select>
+              	  	<button type="submit" name="command" value="CarregaMinhaSugestaoCategoria" class="bOk">OK</button>
+                 </form>
             </div>
             </div>    
         </div>

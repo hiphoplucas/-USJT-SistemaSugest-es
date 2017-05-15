@@ -93,11 +93,10 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarSugestaoCategoria(String idEspecialidade) {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE status='ativo' and sugestao.Especialidade = ? order by data desc";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE status='ativo' and sugestao.Especialidade  " + idEspecialidade + "  order by data desc";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			stm.setString(1, idEspecialidade);
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					sugestao = new Sugestao();
@@ -121,6 +120,38 @@ public class SugestaoDAO {
 		}
 		return listaTop;
 	}
+	public ArrayList<Sugestao> listarSugestaoCategoriaUsuario(String idEspecialidade, int idUsuario) {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaSugestaoUsuarioCategoria = new ArrayList<>();
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor, sugestao.status as status, sugestao.Colaborador FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE sugestao.Especialidade  "+idEspecialidade+" and sugestao.Colaborador = " + idUsuario;
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setIdSugestao(rs.getInt("idSugestao"));
+					sugestao.setTitulo(rs.getString("titulo"));
+					sugestao.setColaborador(rs.getInt("colaborador"));
+					if(rs.getString("sugestao").length() < 95){
+						sugestao.setSugestao(rs.getString("sugestao"));
+					}else{
+						sugestao.setSugestao(rs.getString("sugestao").substring(0, 95)+"...");
+					}
+					sugestao.setData(rs.getString("data"));
+					sugestao.setNomeEspecialidade(rs.getString("especialidade"));
+					sugestao.setCorEspecialidade(rs.getString("cor"));
+					listaSugestaoUsuarioCategoria.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestaoUsuarioCategoria;
+	}
+	
 	public ArrayList<Sugestao> listarSugestaoAvalia(int idEspecialidade) {
 		Sugestao sugestao = new Sugestao();
 		ArrayList<Sugestao> listaSugestaoAvalia = new ArrayList<>();
@@ -238,6 +269,75 @@ public class SugestaoDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return listaParticipacao;
+	}
+	
+	public ArrayList<Sugestao> sugestoesAprovadasCategoria() {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaSugestoesAprovadasCategoria = new ArrayList<>();
+		String sqlSelect = "select especialidade.nomeEspecialidade as especialidade, count(sugestao.Especialidade) as quantidade from sugestao join especialidade on sugestao.Especialidade = especialidade.idEspecialidade where sugestao.status = 'ativo' group by sugestao.Especialidade order by quantidade desc;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setNomeEspecialidade(rs.getString("Especialidade"));
+					sugestao.setAprovadas(rs.getInt("quantidade"));
+					listaSugestoesAprovadasCategoria.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestoesAprovadasCategoria;
+	}
+	
+	public ArrayList<Sugestao> sugestoesGeralCategoria() {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaSugestoesGeralCategoria = new ArrayList<>();
+		sugestoesAprovadasCategoria();
+		String sqlSelect = "select especialidade.nomeEspecialidade as especialidade, count(sugestao.Especialidade) as quantidade from sugestao join especialidade on sugestao.Especialidade = especialidade.idEspecialidade group by sugestao.Especialidade order by quantidade desc;";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setTotal(rs.getInt("quantidade"));
+					listaSugestoesGeralCategoria.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestoesGeralCategoria;
+	}
+	
+	public ArrayList<Sugestao> participacaoCategoria(int idEspecialidad) {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaParticipacaoCategoria = new ArrayList<>();
+		String sqlSelect = "SELECT usuarios.nome as nome, count(sugestao.Colaborador) as quantidade, sugestao.colaborador from sugestao join usuarios on usuarios.idusuario = sugestao.Colaborador where sugestao.Especialidade = "+ idEspecialidad +" order by quantidade desc";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					sugestao.setNomeColaborador(rs.getString("nome"));
+					sugestao.setpQuantidade(rs.getInt("quantidade"));
+					listaParticipacaoCategoria.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaParticipacaoCategoria;
 	}
 	
 	public void aprovar(int idSugestao) {

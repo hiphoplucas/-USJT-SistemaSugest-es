@@ -29,6 +29,9 @@ public class SugestaoService {
 	public ArrayList<Sugestao> listarSugestaoAvalia(int idEspecialidade){
 		return dao.listarSugestaoAvalia(idEspecialidade);
 	}
+	public ArrayList<Sugestao> listarSugestaoCategoriaUsuario(String idEspecialidade, int idUsuario){
+		return dao.listarSugestaoCategoriaUsuario(idEspecialidade, idUsuario);
+	}	
 	public ArrayList<Sugestao> participacao(){
 		return dao.participacao();
 	}
@@ -44,4 +47,13 @@ public class SugestaoService {
 	public void atualizaFeedback(int idSugestao, String feedback){
 		dao.atualizaFeedback(idSugestao, feedback);
 	}
+	public ArrayList<Sugestao> sugestoesAprovadasCategoria(){
+		return dao.sugestoesAprovadasCategoria();
+	}
+	public ArrayList<Sugestao> participacaoCategoria(int idEspecialidade){
+		return dao.participacaoCategoria(idEspecialidade);
+	}	
+	public ArrayList<Sugestao> sugestoesGeralCategoria(){
+		return dao.sugestoesGeralCategoria();
+	}	
 }

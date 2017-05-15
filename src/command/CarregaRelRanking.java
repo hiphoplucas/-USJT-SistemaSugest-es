@@ -12,22 +12,23 @@ import javax.servlet.http.HttpSession;
 import model.Sugestao;
 import service.SugestaoService;
 
-public class CarregaRelParticipacao implements Command {
+public class CarregaRelRanking implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		int pIdEspecialidade = Integer.parseInt(request.getParameter("IdEspecialidade"));
 		
 		SugestaoService us = new SugestaoService();
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Sugestao> listaParticipacao = null;
-		listaParticipacao = us.participacao();
-		session.setAttribute("listaParticipacao", listaParticipacao);
+		ArrayList<Sugestao> listaParticipacaoCategoria = null;
+		listaParticipacaoCategoria = us.participacaoCategoria(pIdEspecialidade);
+		session.setAttribute("listaParticipacaoCategoria", listaParticipacaoCategoria);
 		
-		view = request.getRequestDispatcher("participacao.jsp");
+		view = request.getRequestDispatcher("ranking.jsp");
 		view.forward(request, response);
 
 

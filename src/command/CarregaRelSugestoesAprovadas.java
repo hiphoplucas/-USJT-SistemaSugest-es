@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import model.Sugestao;
 import service.SugestaoService;
 
-public class CarregaRelParticipacao implements Command {
+public class CarregaRelSugestoesAprovadas implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
@@ -23,11 +23,11 @@ public class CarregaRelParticipacao implements Command {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Sugestao> listaParticipacao = null;
-		listaParticipacao = us.participacao();
-		session.setAttribute("listaParticipacao", listaParticipacao);
+		ArrayList<Sugestao> listaSugestoesAprovadasCategoria = null;
+		listaSugestoesAprovadasCategoria = us.sugestoesAprovadasCategoria();
+		session.setAttribute("listaSugestoesAprovadasCategoria", listaSugestoesAprovadasCategoria);
 		
-		view = request.getRequestDispatcher("participacao.jsp");
+		view = request.getRequestDispatcher("sugestoesAprovadas.jsp");
 		view.forward(request, response);
 
 
