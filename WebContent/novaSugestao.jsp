@@ -6,11 +6,12 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Nova Categoria</title>
+    <title>USJT - SISTEMA SUGESTÕES - NOVA SUGESTÃO</title>
 </head>
 
 <body>
@@ -19,12 +20,17 @@
         <div class="top">
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Nova Sugestão</div></div>
+                <c:import url="logoInterno.jsp"/>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
     
     <div class="limitHome">
         <form action="controller.do"  method="post">
         <div class="conteudo">
+        <input type="hidden" name="idUsuario" value="${idusuario }">
         <ul>
             <li>
                 <div class="sT">Qual a sua sugestão?</div>
@@ -51,7 +57,7 @@
             	<input name="sugestao" type="text" placeholder=" Sugestão" class="sugestao">
             </li>
             <li>
-                <input type="submit" name="command" value="CriarSugestao" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarSugestao">SALVAR</button>
             </li>
         </ul>    
         </div>

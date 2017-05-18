@@ -25,7 +25,13 @@ html{
 
 #sugestao{
     height: 450px;
-    border-right: 1px solid #ccc
+    border-right: 1px solid #ccc;
+    margin-left: -20px;
+}
+
+#sugestaoAvalia{
+    height: 450px;
+    margin-left: -20px;
 }
 
 .boxBorda{
@@ -92,8 +98,34 @@ html{
     background: #5cb85c;
     color: #fff;
     height: 30px;
+    width: 100%;    
+    border: 0px
+}
+
+.botaoVerde{
+    background: #5cb85c;
+    color: #fff;
+    height: 30px;
     width: 100%;
-    
+    border: 0px;    
+}
+
+.botaoCinza{
+    background: #999;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    border: 0px;  
+    margin-top: 5px;  
+}
+
+.botaoVermelho{
+    background: #d9534f;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    border: 0px;
+    margin-top: 5px;    
 }
 
 .coneudo input textarea{
@@ -161,6 +193,7 @@ html{
 
 .menuSugestoes{
     margin-top: 10px;
+    margin-left: -22px;
 }
 
 .menuSugestoes .botao{
@@ -179,6 +212,14 @@ html{
     height: 30px;    
 }
 
+.bOk{
+	height: 30px;
+	width: 30px;
+	background: #999;
+	color: #fff;
+	border: 0;
+}
+
 .tPopulares{
     font-size: 20px;
     width: 30px;
@@ -188,7 +229,7 @@ html{
     font-size: 16px;
     color: #23527b;
     white-space: nowrap; 
-    width: 24em; 
+    width: 20em; 
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -211,8 +252,76 @@ html{
     color: #999;
 }
 
+.pVerMais button {
+    border: 0;
+    background: #FFF;
+}
+
+
 .vSugestao{
 	margin-top: 20px;
+}
+
+.titulo{
+	font-size: 16px;
+    color: #23527b;
+}
+
+.lSugestao{
+	font-size: 12px;
+	
+}
+
+.boxSugestao{
+	margin-left: -64px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	border-sizing: border-box;
+	height: 60px;
+	
+}
+
+.vsTitulo{
+	font-size: 16px;
+    color: #23527b;
+    margin-bottom: 20px;
+}
+
+.vsSugestao{
+	font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.vsAcao input{
+	width: 100%;
+    height: 100px;
+    border: 1px solid #cccccc;
+}
+
+.vsAcao textarea{
+	width: 100%;
+    height: 100px;
+    border: 1px solid #cccccc;
+}
+
+.vsAcao button{
+	background: #5cb85c;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    border: 0;
+    margin-top: 10px;
+}
+
+.vsUsuario{
+	font-size: 16px;
+    color: #23527b;
+}
+
+.feedback{
+	width: 100%;
+    height: 120px;
+    border: 1px solid #cccccc;	
 }
 
 @media (max-width: 990px){

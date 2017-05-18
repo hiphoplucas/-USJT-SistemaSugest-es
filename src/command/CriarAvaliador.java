@@ -50,16 +50,4 @@ public class CriarAvaliador implements Command {
 		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
 	}
-
-	public int busca(Usuario usuario, ArrayList<Usuario> lista) {
-		Usuario to;
-		for (int i = 0; i < lista.size(); i++) {
-			to = lista.get(i);
-			if (to.getId() == usuario.getId()) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
 }

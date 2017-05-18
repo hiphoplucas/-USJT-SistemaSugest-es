@@ -6,11 +6,12 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Nova Categoria</title>
+    <title>USJT - SISTEMA SUGESTÕES - NOVA CATEGORIA</title>
 </head>
 
 <body>
@@ -19,8 +20,12 @@
         <div class="top">
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Nova Categoria</div></div>
+                <c:import url="logoInterno.jsp"/>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
     
     <div class="limitHome">
         <form action="controller.do"  method="post">
@@ -31,7 +36,7 @@
             <li>
                 <input name="cor"  type="text" placeholder=" Cor da Categoria"> </li>
             <li>
-                <input type="submit" name="command" value="CriarCategoria" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarCategoria">SALVAR</button>
             </li>
         </ul>    
         </div>

@@ -18,6 +18,7 @@ public class CriarSugestao implements Command {
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		String pId = request.getParameter("id");
+		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 		int pCategoria = Integer.parseInt(request.getParameter("categoria"));
 		String pTitulo = request.getParameter("titulo");
 		String pSugestao = request.getParameter("sugestao");
@@ -31,6 +32,7 @@ public class CriarSugestao implements Command {
 
 		Sugestao sugestao = new Sugestao();
 		sugestao.setIdSugestao(id);
+		sugestao.setColaborador(pIdUsuario);
 		sugestao.setEspecialidade(pCategoria);
 		sugestao.setTitulo(pTitulo);
 		sugestao.setSugestao(pSugestao);
@@ -45,17 +47,6 @@ public class CriarSugestao implements Command {
 		view.forward(request, response);
 
 
-	}
-
-	public int busca(Sugestao sugestao, ArrayList<Sugestao> lista) {
-		Sugestao to;
-		for (int i = 0; i < lista.size(); i++) {
-			to = lista.get(i);
-			if (to.getIdSugestao() == sugestao.getIdSugestao()) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 }

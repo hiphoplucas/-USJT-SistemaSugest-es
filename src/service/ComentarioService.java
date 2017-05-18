@@ -11,7 +11,7 @@ public class ComentarioService {
 	public int criar(Comentario comentario) {
 		return dao.criar(comentario);
 	}
-	public ArrayList<Comentario> listarComentario(){
-		return dao.listarComentario();
+	public ArrayList<Comentario> listarComentario(int idSugestao){
+		return dao.listarComentario(idSugestao);
 	}
 }

@@ -6,9 +6,10 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestões</title>
+    <title>USJT - SISTEMA SUGESTÕES - NOVO AVALIADOR</title>
 </head>
 
 <body>
@@ -16,8 +17,12 @@
         <div class="top">
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Novo Avaliador</div></div>
+                <c:import url="logoInterno.jsp"/>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
     
     <div class="limitHome">
     <form action="controller.do" name="form" method="post">    
@@ -42,7 +47,7 @@
             <li>
                 <input name="cpf" type="text" placeholder=" CPF"> </li>                
             <li>
-                <input type="submit" name="command" value="CriarAvaliador" class="botao">
+                <button type="submit" class="botao" name="command" value="CriarAvaliador">SALVAR</button>
             </li>
         </ul>    
         </div>

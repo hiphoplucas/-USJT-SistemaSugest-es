@@ -4,6 +4,7 @@ public class Sugestao{
 
    private int idSugestao;
    private int colaborador;
+   private String nomeColaborador;
    private String titulo;
    private String sugestao;
    private String avaliador, feedback;
@@ -14,6 +15,11 @@ public class Sugestao{
    private String data;
    private String corEspecialidade;
    public static int idColaborador;
+   private double pQuantidade;
+   private int aprovadas;
+   private int total;
+
+private String status;
    
    public Sugestao() {
    }
@@ -134,7 +140,45 @@ public String getCorEspecialidade() {
 public void setCorEspecialidade(String corEspecialidade) {
 	this.corEspecialidade = corEspecialidade;
 }
-   
+
+public String getNomeColaborador() {
+	return nomeColaborador;
+}
+
+public void setNomeColaborador(String nomeColaborador) {
+	this.nomeColaborador = nomeColaborador;
+}
+
+public double getpQuantidade() {
+	return pQuantidade;
+}
+
+public void setpQuantidade(double pQuantidade) {
+	this.pQuantidade = pQuantidade;
+}
+
+public String getStatus() {
+	return status;
+}
+
+public void setStatus(String status) {
+	this.status = status;
+}
+
+public int getAprovadas() {
+	return aprovadas;
+}
+
+public void setAprovadas(int aprovadas) {
+	this.aprovadas = aprovadas;
+}
+public int getTotal() {
+	return total;
+}
+
+public void setTotal(int total) {
+	this.total = total;
+}   
    
    
 }

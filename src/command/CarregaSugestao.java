@@ -10,42 +10,41 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Comentario;
+import model.Sugestao;
 import service.ComentarioService;
+import service.SugestaoService;
 
 
-
-public class ListaComentario implements Command {
+public class CarregaSugestao implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		int pId = Integer.parseInt(request.getParameter("id"));
+
+		Sugestao sugestao = new Sugestao();
+		sugestao.setIdSugestao(pId);
 		
+		Comentario comentario = new Comentario();
+		comentario.setIdSugestao(pId);
+			
+		SugestaoService ss = new SugestaoService();
 		ComentarioService cs = new ComentarioService();
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Comentario> listaComentario = null;
-		listaComentario = cs.listarComentario();
-		session.setAttribute("listaComentario", listaComentario);
+		sugestao = ss.carregar(sugestao.getIdSugestao());
+		request.setAttribute("sugestao", sugestao);
 		
-		//System.out.println(lista.get(0));
+		ArrayList<Comentario> listaComentario = null;
+		listaComentario = cs.listarComentario(comentario.getIdSugestao());
+		session.setAttribute("listaComentario", listaComentario);
 		
 		view = request.getRequestDispatcher("verMais.jsp");
 		view.forward(request, response);
+		
 
 
 	}
-
-	public int busca(Comentario comentario, ArrayList<Comentario> listaComentario) {
-		Comentario to;
-		for (int i = 0; i < listaComentario.size(); i++) {
-			to = listaComentario.get(i);
-			if (to.getId() == comentario.getId()) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
 }

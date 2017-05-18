@@ -8,6 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>USJT - SISTEMA SUGESTÕES</title>
+	<c:import url="icon.jsp"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/estilo.css" rel="stylesheet">
 </head>
@@ -41,11 +42,11 @@
                             <li>
                                 <input name="cpf" type="text" placeholder=" CPF"> </li>
                             <li>
-                                <input name="senha" type="text" placeholder=" Senha"> </li>
+                                <input name="senha" type="password" placeholder=" Senha"> </li>
                             <li>
-                                <input type="text" placeholder=" Confirme a Senha"> </li>
+                                <input type="password" placeholder=" Confirme a Senha"> </li>
                             <li>
-                                <input type="submit" name="command" value="CriarUsuario"  id="cadastrar">
+                                <button type="submit" id="cadastrar" name="command" value="CriarUsuario">SALVAR</button>
                             </li>
                         </ul>
                      </form>
@@ -65,7 +66,7 @@
                                 <li>
                                     <input type="text" name="email" placeholder=" Email"> </li>
                                 <li>
-                                    <input type="text" name="senha" placeholder=" Senha "> </li>
+                                    <input type="password" name="senha" placeholder=" Senha "> </li>
                                 <li>
                                     <button type="submit">LOGIN</button>
                                 </li>

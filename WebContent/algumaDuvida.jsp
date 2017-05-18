@@ -6,9 +6,10 @@
 
 <head>
     <meta charset="UTF-8">
+	<c:import url="icon.jsp"/>
     <link rel="stylesheet" href="css/styleHome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Sugestões</title>
+    <title>USJT - SISTEMA SUGESTÕES - ALGUMA DUVIDA</title>
 </head>
 
 <body>
@@ -16,8 +17,14 @@
         <div class="top">
             <div class="limitHome">
                 <div class="col-md-9"><div id="tituloHome">Alguma Duvida</div></div>
+                <c:import url="logoInterno.jsp"/>
+
+			</div>
+		</div>
+	</div>
                 <c:import url="menu.jsp"/>
-    </div>
+                
+    
     <script src="js/jquery.min.js"></script>
  	<script src="js/bootstrap.min.js"></script>
 </body>
