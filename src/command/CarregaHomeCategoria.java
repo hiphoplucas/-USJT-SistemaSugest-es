@@ -29,6 +29,8 @@ public class CarregaHomeCategoria implements Command {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
+		session.setAttribute("pIdEspecialidade", pIdEspecialidade);
+		
 		ArrayList<Categoria> lista = null;
 		lista = cs.listarCategoria();
 		session.setAttribute("lista", lista);

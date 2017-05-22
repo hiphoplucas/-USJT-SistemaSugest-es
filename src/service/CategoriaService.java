@@ -14,7 +14,13 @@ public class CategoriaService {
 	public Categoria carregar(int id){
 		return dao.carregar(id);
 	}
+	public ArrayList<Categoria> listarCategoriaStatus(String status){
+		return dao.listarCategoriaStatus(status);
+	}
 	public ArrayList<Categoria> listarCategoria(){
 		return dao.listarCategoria();
+	}
+	public void inativarCategoria(int idCategoria){
+		dao.inativarCategoria(idCategoria);
 	}
 }

@@ -2,6 +2,8 @@ package service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import dao.SugestaoDAO;
 import model.Sugestao;
 
@@ -55,5 +57,8 @@ public class SugestaoService {
 	}	
 	public ArrayList<Sugestao> sugestoesGeralCategoria(){
 		return dao.sugestoesGeralCategoria();
-	}	
+	}
+	public ArrayList<Sugestao> listaSugestoesGeralAvaliador(HttpSession session){
+		return dao.listaSugestoesGeralAvaliador(session);
+	}
 }

@@ -12,29 +12,29 @@ import javax.servlet.http.HttpSession;
 import model.Categoria;
 import service.CategoriaService;
 
-
-
-public class ListarCategoria implements Command {
+public class InativaCategoria implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		int pIdCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+		
+		Categoria categoria = new Categoria();
+		categoria.setId(pIdCategoria);
 		
 		CategoriaService cs = new CategoriaService();
-		
+				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
-		session.setAttribute("lista", lista);
-		
-		//System.out.println(lista.get(0));
+		cs.inativarCategoria(pIdCategoria);
+		categoria = cs.carregar(categoria.getId());
+		request.setAttribute("categoria", categoria);
 		
 		view = request.getRequestDispatcher("categorias.jsp");
 		view.forward(request, response);
+		
 
 
 	}
-
 }

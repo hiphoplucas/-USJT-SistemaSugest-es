@@ -14,11 +14,12 @@ import service.CategoriaService;
 
 
 
-public class ListarCategoria implements Command {
+public class CarregaCategoriaStatus implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		String pStatus = request.getParameter("status");
 		
 		CategoriaService cs = new CategoriaService();
 		
@@ -26,7 +27,7 @@ public class ListarCategoria implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoriaStatus(pStatus);
 		session.setAttribute("lista", lista);
 		
 		//System.out.println(lista.get(0));

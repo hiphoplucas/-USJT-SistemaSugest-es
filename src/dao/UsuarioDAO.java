@@ -140,6 +140,7 @@ public class UsuarioDAO {
 					HttpSession sessao = request.getSession();
 					sessao.setAttribute("tipousuario", rs.getInt("tipo"));
 					sessao.setAttribute("idusuario", rs.getInt("idusuario"));
+					sessao.setAttribute("ObjectUsuario", user);					
 					sessao.setAttribute("idespecialidade", rs.getInt("idespecialidade"));
 					
 					return true;

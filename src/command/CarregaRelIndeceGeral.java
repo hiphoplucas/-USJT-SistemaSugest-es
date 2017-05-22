@@ -23,10 +23,6 @@ public class CarregaRelIndeceGeral implements Command {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Sugestao> listaSugestoesAprovadasCategoria = null;
-		listaSugestoesAprovadasCategoria = us.sugestoesAprovadasCategoria();
-		session.setAttribute("listaSugestoesAprovadasCategoria", listaSugestoesAprovadasCategoria);
-		
 		ArrayList<Sugestao> listaSugestoesGeralCategoria = null;
 		listaSugestoesGeralCategoria = us.sugestoesGeralCategoria();
 		session.setAttribute("listaSugestoesGeralCategoria", listaSugestoesGeralCategoria);

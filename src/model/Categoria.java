@@ -7,6 +7,7 @@ public class Categoria implements Serializable{
 	private int id;
 	private String categoria;
 	private String cor;
+	private String status;
 	
 	public Categoria() {
 		
@@ -34,6 +35,12 @@ public class Categoria implements Serializable{
 	}
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

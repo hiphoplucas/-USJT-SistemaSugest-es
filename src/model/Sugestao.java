@@ -15,7 +15,7 @@ public class Sugestao{
    private String data;
    private String corEspecialidade;
    public static int idColaborador;
-   private int pQuantidade;
+   private double pQuantidade;
    private int aprovadas;
    private int total;
 
@@ -149,11 +149,11 @@ public void setNomeColaborador(String nomeColaborador) {
 	this.nomeColaborador = nomeColaborador;
 }
 
-public int getpQuantidade() {
+public double getpQuantidade() {
 	return pQuantidade;
 }
 
-public void setpQuantidade(int pQuantidade) {
+public void setpQuantidade(double pQuantidade) {
 	this.pQuantidade = pQuantidade;
 }
 

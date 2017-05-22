@@ -28,24 +28,24 @@
     <div class="limitHome">
         <div class="conteudoCadastro">
 
-        	<c:if test="${not empty listaSugestoesGeralCategoria}">
+        	<c:if test="${not empty listaSugestoesGeralAvaliador}">
                 <div id="list" class="row">
 
                     <div class="table-responsive col-md-12">
                         <table class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
-                                    <th>Categorias</th>
+                                    <th>Colaborador</th>
                                     <th>Aprovadas</th>
                                     <th>Sugestões</th>
                                     <th>%</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="sugestao" items="${listaSugestoesGeralCategoria}">
+          					<c:forEach var="sugestao" items="${listaSugestoesGeralAvaliador}">
           					    <tr>
                                             <td>
-                                               ${sugestao.nomeEspecialidade }
+                                               ${sugestao.nomeColaborador }
                                             </td>
                                             <td>
                                                 ${sugestao.aprovadas }

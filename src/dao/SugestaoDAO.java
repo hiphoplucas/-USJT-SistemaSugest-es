@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import model.Sugestao;
 
 public class SugestaoDAO {
@@ -298,14 +301,42 @@ public class SugestaoDAO {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaSugestoesGeralCategoria = new ArrayList<>();
 		sugestoesAprovadasCategoria();
-		String sqlSelect = "select especialidade.nomeEspecialidade as especialidade, count(sugestao.Especialidade) as quantidade from sugestao join especialidade on sugestao.Especialidade = especialidade.idEspecialidade group by sugestao.Especialidade order by quantidade desc;";
+		String sqlSelect = "SELECT especialidade.nomeEspecialidade as Nome, count(sugestao.Especialidade) as quantidade, sugestao.Especialidade FROM"
+				+ " sugestao JOIN especialidade on sugestao.Especialidade = especialidade.idEspecialidade"
+				+ " group by sugestao.Especialidade order by quantidade desc;";
+		
+		
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					sugestao = new Sugestao();
+					
+					//conta as sugestoes aprovadas
+					String sqlSelect2 = "SELECT count(sugestao.Especialidade) AS total FROM"
+							+ " sugestao JOIN especialidade on sugestao.Especialidade = especialidade.idEspecialidade"
+							+ " WHERE sugestao.Especialidade ="+rs.getInt("Especialidade")+" AND sugestao.status='ativo';";
+					PreparedStatement stm2 = conn.prepareStatement(sqlSelect2);
+					try (ResultSet rs2 = stm2.executeQuery(sqlSelect2);) {
+						
+						if(rs2.next()) sugestao.setAprovadas(rs2.getInt("total"));
+						
+					} catch (SQLException e2) {
+						e2.printStackTrace();
+					}
+					//----------------------------------
+					double pTotal = 0.0;
+					
+					if(sugestao.getAprovadas() == 0){
+						pTotal = 0;
+					}else{
+						pTotal = (sugestao.getAprovadas() * 100) / rs.getInt("quantidade");
+					}
+					
+					sugestao.setpQuantidade(pTotal);
 					sugestao.setTotal(rs.getInt("quantidade"));
+					sugestao.setNomeEspecialidade(rs.getString("Nome"));
 					listaSugestoesGeralCategoria.add(sugestao);
 				}
 			} catch (SQLException e) {
@@ -316,6 +347,62 @@ public class SugestaoDAO {
 		}
 		return listaSugestoesGeralCategoria;
 	}
+	
+	public ArrayList<Sugestao> listaSugestoesGeralAvaliador(HttpSession session) {
+		Sugestao sugestao;
+		ArrayList<Sugestao> listaSugestoesGeralCategoria = new ArrayList<>();
+		sugestoesAprovadasCategoria();		
+	
+		int idespecialidade = (int)session.getAttribute("idespecialidade");
+		
+		String sqlSelect = "SELECT usuarios.nome, count(sugestao.Especialidade) as quantidade, sugestao.Especialidade, usuarios.idusuario FROM"
+				+ " sugestao JOIN usuarios ON sugestao.Colaborador = usuarios.idusuario"
+				+ " WHERE sugestao.Especialidade = "+idespecialidade
+				+ " group by sugestao.Especialidade order by quantidade desc;";
+		
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					sugestao = new Sugestao();
+					
+					//conta as sugestoes aprovadas
+					String sqlSelect2 = "SELECT count(sugestao.Especialidade) AS total FROM"
+							+ " sugestao JOIN usuarios on sugestao.Colaborador = usuarios.idusuario"
+							+ " WHERE sugestao.Colaborador ="+rs.getInt("idusuario")+" AND sugestao.status='ativo';";
+					PreparedStatement stm2 = conn.prepareStatement(sqlSelect2);
+					try (ResultSet rs2 = stm2.executeQuery(sqlSelect2);) {
+						
+						if(rs2.next()) sugestao.setAprovadas(rs2.getInt("total"));
+						
+					} catch (SQLException e2) {
+						e2.printStackTrace();
+					}
+					//----------------------------------
+					double pTotal = 0.0;
+					
+					if(sugestao.getAprovadas() == 0){
+						pTotal = 0;
+					}else{
+						pTotal = (sugestao.getAprovadas() * 100) / rs.getInt("quantidade");
+					}
+					
+					sugestao.setpQuantidade(pTotal);
+					sugestao.setTotal(rs.getInt("quantidade"));
+					sugestao.setNomeColaborador(rs.getString("nome"));
+					listaSugestoesGeralCategoria.add(sugestao);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return listaSugestoesGeralCategoria;
+	}
+
 	
 	public ArrayList<Sugestao> participacaoCategoria(int idEspecialidad) {
 		Sugestao sugestao;
