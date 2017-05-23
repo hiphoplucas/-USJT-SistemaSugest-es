@@ -13,7 +13,7 @@ import model.Usuario;
 
 public class UsuarioDAO {
 	public int criar(Usuario usuario) {
-		String sqlInsert = "INSERT INTO usuarios(nome, senha, email, cpf, tipo) VALUES (?, ?, ?, ?, 1)";
+		String sqlInsert = "INSERT INTO usuarios(nome, senha, email, cpf, tipo, status) VALUES (?, ?, ?, ?, 1, 'ativo')";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {

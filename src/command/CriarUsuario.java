@@ -30,6 +30,7 @@ public class CriarUsuario implements Command {
 		} catch (NumberFormatException e) {
 
 		}
+		System.out.println(pSenha+pNome+pEmail+pCpf+pSenha);
 
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
@@ -43,9 +44,7 @@ public class CriarUsuario implements Command {
 		HttpSession session = request.getSession();
 
 		us.criar(usuario);
-		ArrayList<Usuario> lista = new ArrayList<>();
-		lista.add(usuario);
-		session.setAttribute("lista", lista);
+		
 		view = request.getRequestDispatcher("sugestoes.jsp");
 
 		view.forward(request, response);
