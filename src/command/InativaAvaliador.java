@@ -12,30 +12,33 @@ import javax.servlet.http.HttpSession;
 import model.Usuario;
 import service.UsuarioService;
 
-
-
-
-
-public class ListarAvaliador implements Command {
+public class InativaAvaliador implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		String pStatus = request.getParameter("status");
+		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		String pStatus = "in ('ativo')";
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(pIdUsuario);
 		
 		UsuarioService us = new UsuarioService();
-		
+				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
+		
+		us.inativar(pIdUsuario);
 		
 		ArrayList<Usuario> lista = null;
 		lista = us.listarAvaliador(pStatus);
 		session.setAttribute("lista", lista);
 		
-		//System.out.println(lista.get(0));
+		request.setAttribute("usuario", usuario);
 		
 		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
+		
 
 
 	}

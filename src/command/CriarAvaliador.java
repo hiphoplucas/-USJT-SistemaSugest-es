@@ -29,6 +29,7 @@ public class CriarAvaliador implements Command {
 		} catch (NumberFormatException e) {
 
 		}
+		String pStatus = "in ('ativo')";
 
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
@@ -44,7 +45,7 @@ public class CriarAvaliador implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Usuario> lista = null;
-		lista = us.listarAvaliador();
+		lista = us.listarAvaliador(pStatus);
 		session.setAttribute("lista", lista);
 		
 		view = request.getRequestDispatcher("avaliador.jsp");

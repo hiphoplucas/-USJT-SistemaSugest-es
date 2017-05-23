@@ -28,6 +28,20 @@
     <div class="container-fluid">
     <div class="limitHome">
         <div class="conteudoCadastro">
+        <div class="menuSugestoes">
+            <div class="col-md-10">
+                 <form action="controller.do"  method="post">
+                 	<select name="status">
+                	        <option value=" = 'ativo'">*Selecione o Status*</option>        
+                            <option value=" = 'ativo'">Ativas</option>
+                            <option value=" = 'inativo'">Inativas</option>
+                            <option value=" <> ''">Todos</option>
+                	</select>
+              	  	<button type="submit" name="command" value="ListarAvaliador" class="bOk">OK</button>
+                 </form>
+            </div>
+            </div> 
+        
         <c:if test="${not empty lista}">
                 <div id="list" class="row">
 
@@ -58,8 +72,8 @@
                                                 ${usuario.nomeEspecialidade }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
-                                                <button id="btn${usuario.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${usuario.id }">Excluir</button>
+                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
+                                                <a href="controller.do?command=InativaAvaliador&idUsuario=${usuario.id }"><button class="perigo">INATIVAR</button></a>
                                             </td>
                                         </tr>             
                             </c:forEach>

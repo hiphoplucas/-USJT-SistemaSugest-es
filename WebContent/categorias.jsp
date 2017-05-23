@@ -66,8 +66,8 @@
                                                 ${categoria.cor }
                                             </td>
                                             <td class="actions">
-                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button>EDITAR</button></a>
-                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button>INATIVAR</button></a>
+                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
+                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="perigo">INATIVAR</button></a>
                                             </td>
                                         </tr>             
                             </c:forEach>
