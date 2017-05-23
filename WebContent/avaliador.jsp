@@ -69,7 +69,7 @@
                                                 ${usuario.email }
                                             </td>
                                             <td>
-                                                ${usuario.nomeEspecialidade } ${usuario.status }
+                                                ${usuario.nomeEspecialidade } 
                                             </td>
                                             <td class="actions">
                                                 <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
