@@ -9,33 +9,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Categoria;
-import model.Sugestao;
-import service.CategoriaService;
-import service.SugestaoService;
+import model.Usuario;
+import service.UsuarioService;
 
-public class CarregaMinhaSugestao implements Command {
+public class InativaAvaliador implements Command {
+
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
-		String pStatus = " = 'ativo' "; 
+		String pStatus = "in ('ativo')";
 		
-		CategoriaService cs = new CategoriaService();
-		SugestaoService ss = new SugestaoService();
+		Usuario usuario = new Usuario();
+		usuario.setId(pIdUsuario);
 		
+		UsuarioService us = new UsuarioService();
+				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria(pStatus);
+		us.inativar(pIdUsuario);
+		
+		ArrayList<Usuario> lista = null;
+		lista = us.listarAvaliador(pStatus);
 		session.setAttribute("lista", lista);
 		
-		ArrayList<Sugestao> listaSugestaoUsuario = null;
-		listaSugestaoUsuario = ss.listarSugestaoUsuario(pIdUsuario);
-		session.setAttribute("listaSugestaoUsuario", listaSugestaoUsuario);
+		request.setAttribute("usuario", usuario);
 		
-		view = request.getRequestDispatcher("minhasSugestoes.jsp");
+		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
 		
 

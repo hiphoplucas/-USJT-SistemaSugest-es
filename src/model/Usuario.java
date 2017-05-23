@@ -12,6 +12,7 @@ public class Usuario implements Serializable {
 	private int idEspecialidade;
 	private String nomeEspecialidade;
 	private String categoria; 
+	private String status;
 	
 	public Usuario() {
 		
@@ -80,5 +81,12 @@ public class Usuario implements Serializable {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 }

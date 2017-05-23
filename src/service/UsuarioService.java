@@ -21,12 +21,17 @@ public class UsuarioService {
 	public void atualizar(Usuario usuario){
 		dao.atualizar(usuario);
 	}
-	
+	public void inativar(int id){
+		dao.inativar(id);
+	}
+	public void ativar(int id){
+		dao.ativar(id);
+	}
 	public void excluir(int id){
 		dao.excluir(id);
 	}
-	public ArrayList<Usuario> listarAvaliador(){
-		return dao.listarAvaliador();
+	public ArrayList<Usuario> listarAvaliador(String status){
+		return dao.listarAvaliador(status);
 	}
 	
 	public Usuario carregar(int id){

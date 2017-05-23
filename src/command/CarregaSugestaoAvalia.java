@@ -19,6 +19,7 @@ public class CarregaSugestaoAvalia implements Command {
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		int pIdEspecialidade = Integer.parseInt(request.getParameter("IdEspecialidade"));
+		String pStatus = " = 'ativo' "; 
 		
 		CategoriaService cs = new CategoriaService();
 		SugestaoService ss = new SugestaoService();
@@ -27,7 +28,7 @@ public class CarregaSugestaoAvalia implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		ArrayList<Sugestao> listaSugestaoAvalia = null;

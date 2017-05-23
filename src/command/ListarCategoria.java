@@ -19,14 +19,15 @@ public class ListarCategoria implements Command {
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		
+		String pStatus = request.getParameter("status"); 
+				
 		CategoriaService cs = new CategoriaService();
 		
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		//System.out.println(lista.get(0));
@@ -35,17 +36,6 @@ public class ListarCategoria implements Command {
 		view.forward(request, response);
 
 
-	}
-
-	public int busca(Categoria categoria, ArrayList<Categoria> lista) {
-		Categoria to;
-		for (int i = 0; i < lista.size(); i++) {
-			to = lista.get(i);
-			if (to.getId() == categoria.getId()) {
-				return i;
-			}
-		}
-		return -1;
 	}
 
 }

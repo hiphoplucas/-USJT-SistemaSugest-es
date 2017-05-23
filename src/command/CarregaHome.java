@@ -21,6 +21,7 @@ public class CarregaHome implements Command {
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		String pStatus = " = 'ativo' "; 
 		
 		CategoriaService cs = new CategoriaService();
 		SugestaoService ss = new SugestaoService();
@@ -29,7 +30,7 @@ public class CarregaHome implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		ArrayList<Sugestao> listaTop = null;
@@ -46,16 +47,4 @@ public class CarregaHome implements Command {
 
 
 	}
-
-	public int busca(Categoria categoria, ArrayList<Categoria> lista) {
-		Categoria to;
-		for (int i = 0; i < lista.size(); i++) {
-			to = lista.get(i);
-			if (to.getId() == categoria.getId()) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
 }
