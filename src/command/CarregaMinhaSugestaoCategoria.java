@@ -20,6 +20,7 @@ public class CarregaMinhaSugestaoCategoria implements Command {
 		HttpServletResponse response) throws ServletException, IOException {
 		int pIdUsuario = Integer.parseInt(request.getParameter("iusuario"));
 		String pIdEspecialidade = request.getParameter("categoria");
+		String pStatus = " = 'ativo' "; 
 		
 		CategoriaService cs = new CategoriaService();
 		SugestaoService ss = new SugestaoService();
@@ -28,7 +29,7 @@ public class CarregaMinhaSugestaoCategoria implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		ArrayList<Sugestao> listaSugestaoUsuario = null;

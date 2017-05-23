@@ -69,11 +69,12 @@
                                                 ${usuario.email }
                                             </td>
                                             <td>
-                                                ${usuario.nomeEspecialidade }
+                                                ${usuario.nomeEspecialidade } ${usuario.status }
                                             </td>
                                             <td class="actions">
                                                 <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
-                                                <a href="controller.do?command=InativaAvaliador&idUsuario=${usuario.id }"><button class="perigo">INATIVAR</button></a>
+                                                <c:if test="${usuario.status == 'ativo' }"><a href="controller.do?command=InativaAvaliador&idUsuario=${usuario.id }"><button class="perigo">INATIVAR</button></a></c:if>
+                                                <c:if test="${usuario.status == 'inativo' }"><a href="controller.do?command=AtivaAvaliador&idUsuario=${usuario.id }"><button class="pPerigo">ATIVAR</button></a></c:if>
                                             </td>
                                         </tr>             
                             </c:forEach>

@@ -24,7 +24,9 @@ public class UsuarioService {
 	public void inativar(int id){
 		dao.inativar(id);
 	}
-	
+	public void ativar(int id){
+		dao.ativar(id);
+	}
 	public void excluir(int id){
 		dao.excluir(id);
 	}

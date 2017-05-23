@@ -29,6 +29,7 @@ public class CriarCategoria implements Command {
 		} catch (NumberFormatException e) {
 
 		}
+		String pStatus = " = 'ativo' "; 
 
 		Categoria categoria = new Categoria();
 		categoria.setId(id);
@@ -42,7 +43,7 @@ public class CriarCategoria implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 				
 		view = request.getRequestDispatcher("categorias.jsp");

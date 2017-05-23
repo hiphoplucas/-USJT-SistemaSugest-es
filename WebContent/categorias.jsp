@@ -31,11 +31,12 @@
             <div class="col-md-10">
                  <form action="controller.do"  method="post">
                  	<select name="status">
-                	        <option value=" <> ''">*Selecione o Status*</option>        
+                	        <option value=" = 'ativo'">*Selecione o Status*</option>        
                             <option value=" = 'ativo'">Ativas</option>
                             <option value=" = 'inativo'">Inativas</option>
+                            <option value=" <> ''">Todas</option>
                 	</select>
-              	  	<button type="submit" name="command" value="CarregaCategoriaStatus" class="bOk">OK</button>
+              	  	<button type="submit" name="command" value="ListarCategoria" class="bOk">OK</button>
                  </form>
             </div>
             </div>    
@@ -67,7 +68,8 @@
                                             </td>
                                             <td class="actions">
                                                 <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
-                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="perigo">INATIVAR</button></a>
+                                                <c:if test="${categoria.status == 'ativo' }"><a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="perigo">INATIVAR</button></a></c:if>
+                                                <c:if test="${categoria.status == 'inativo' }"><a href="controller.do?command=AtivaCategoria&idCategoria=${categoria.id }"><button class="pPerigo">ATIVAR</button></a></c:if>
                                             </td>
                                         </tr>             
                             </c:forEach>

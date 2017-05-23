@@ -9,32 +9,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Categoria;
-import service.CategoriaService;
+import model.Usuario;
+import service.UsuarioService;
 
-public class InativaCategoria implements Command {
+public class AtivaAvaliador implements Command {
 
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		int pIdCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 		String pStatus = "= 'ativo'";
 		
-		Categoria categoria = new Categoria();
-		categoria.setId(pIdCategoria);
+		Usuario usuario = new Usuario();
+		usuario.setId(pIdUsuario);
 		
-		CategoriaService cs = new CategoriaService();
+		UsuarioService us = new UsuarioService();
 				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		cs.inativarCategoria(pIdCategoria);
+		us.ativar(pIdUsuario);
 		
-		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria(pStatus);
+		ArrayList<Usuario> lista = null;
+		lista = us.listarAvaliador(pStatus);
 		session.setAttribute("lista", lista);
+
 		
-		view = request.getRequestDispatcher("categorias.jsp");
+		view = request.getRequestDispatcher("avaliador.jsp");
 		view.forward(request, response);
 		
 

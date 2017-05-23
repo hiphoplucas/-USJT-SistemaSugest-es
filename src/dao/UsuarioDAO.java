@@ -88,6 +88,16 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
+	public void ativar(int id) {
+		String sqlUpdate = "UPDATE usuarios SET usuarios.status= 'ativo' WHERE idUsuario="+id;
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void excluir(int id) {
 		String sqlDelete = "DELETE from usuarios where idUsuario = ?";
@@ -174,7 +184,7 @@ public class UsuarioDAO {
 	public ArrayList<Usuario> listarAvaliador(String status) {
 		Usuario usuario;
 		ArrayList<Usuario> lista = new ArrayList<>();
-		String sqlSelect = "select idUsuario, nome, email, especialidade.nomeEspecialidade as especialidade from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade where usuarios.status "+status;
+		String sqlSelect = "select idUsuario, nome, email, especialidade.nomeEspecialidade as especialidade, usuarios.status as status from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade where usuarios.status "+status;
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -185,6 +195,7 @@ public class UsuarioDAO {
 					usuario.setNome(rs.getString("nome"));
 					usuario.setEmail(rs.getString("email"));;
 					usuario.setNomeEspecialidade(rs.getString("especialidade"));;
+					usuario.setStatus(rs.getString("status"));;
 					lista.add(usuario);
 				}
 			} catch (SQLException e) {

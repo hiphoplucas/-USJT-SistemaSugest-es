@@ -19,6 +19,7 @@ public class ListarCategoriaAvaliador implements Command {
 	@Override
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		String pStatus = " = 'ativo' "; 
 		
 		CategoriaService cs = new CategoriaService();
 		
@@ -26,7 +27,7 @@ public class ListarCategoriaAvaliador implements Command {
 		HttpSession session = request.getSession();
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		//System.out.println(lista.get(0));

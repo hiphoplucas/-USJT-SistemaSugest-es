@@ -22,6 +22,7 @@ public class CarregaHomeCategoria implements Command {
 	public void executar(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		String pIdEspecialidade = request.getParameter("categoria");
+		String pStatus = " = 'ativo' "; 
 		
 		CategoriaService cs = new CategoriaService();
 		SugestaoService ss = new SugestaoService();
@@ -32,7 +33,7 @@ public class CarregaHomeCategoria implements Command {
 		session.setAttribute("pIdEspecialidade", pIdEspecialidade);
 		
 		ArrayList<Categoria> lista = null;
-		lista = cs.listarCategoria();
+		lista = cs.listarCategoria(pStatus);
 		session.setAttribute("lista", lista);
 		
 		ArrayList<Sugestao> listaTop = null;
