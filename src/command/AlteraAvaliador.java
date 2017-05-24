@@ -23,22 +23,23 @@ public class AlteraAvaliador implements Command {
 		String pCpf = request.getParameter("cpf");
 		int pCategoria = Integer.parseInt(request.getParameter("categoria"));
 		
-		System.out.println(pNome+" "+pEmail+" "+pCpf+" "+pCategoria);
+		Usuario teste = new Usuario();
+		teste.setId(pIdUsuario);
+		teste.setNome(pNome);
+		teste.setEmail(pEmail);
+		teste.setIdEspecialidade(pCategoria);
+		teste.setCpf(pCpf);
 		
-		Usuario usuario = new Usuario();
-		usuario.setNome(pNome);
-		usuario.setEmail(pEmail);
-		usuario.setIdEspecialidade(pCategoria);
-		usuario.setCpf(pCpf);
+		//System.out.println(n+" "+e+" "+es+" "+cpf2);
 					
 		UsuarioService us = new UsuarioService();
 				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		us.atualizarAvaliador(usuario);
+		us.atualizarAvaliador(teste);
 		us.carregar(pIdUsuario);
-		request.setAttribute("usuario", usuario);
+		request.setAttribute("teste", teste);
 				
 		view = request.getRequestDispatcher("controller.do?command=ListarAvaliador&status= in ('ativo')");
 		view.forward(request, response);

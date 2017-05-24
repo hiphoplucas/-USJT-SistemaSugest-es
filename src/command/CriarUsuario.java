@@ -45,7 +45,7 @@ public class CriarUsuario implements Command {
 
 		us.criar(usuario);
 		
-		view = request.getRequestDispatcher("sugestoes.jsp");
+		view = request.getRequestDispatcher("controller.do?command=Login");
 
 		view.forward(request, response);
 
