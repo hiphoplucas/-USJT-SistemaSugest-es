@@ -21,6 +21,9 @@ public class UsuarioService {
 	public void atualizar(Usuario usuario){
 		dao.atualizar(usuario);
 	}
+	public void atualizarAvaliador(Usuario usuario){
+		dao.atualizarAvaliador(usuario);
+	}
 	public void inativar(int id){
 		dao.inativar(id);
 	}

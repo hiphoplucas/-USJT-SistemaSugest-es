@@ -78,6 +78,22 @@ public class UsuarioDAO {
 		}
 	}
 	
+	public void atualizarAvaliador(Usuario usuario) {
+		String sqlUpdate = "UPDATE usuarios SET nome=?, email=?, cpf=?, idEspecialidade=? WHERE idUsuario=?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setString(1, usuario.getNome());
+			stm.setString(2, usuario.getEmail());
+			stm.setString(3, usuario.getCpf());
+			stm.setInt(4, usuario.getIdEspecialidade());
+			stm.setInt(5, usuario.getId());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void inativar(int id) {
 		String sqlUpdate = "UPDATE usuarios SET usuarios.status= 'inativo' WHERE idUsuario="+id;
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -114,7 +130,7 @@ public class UsuarioDAO {
 	public Usuario carregar(int id) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
-		String sqlSelect = "SELECT nome, email, senha, cpf from usuarios WHERE idusuario = ?";
+		String sqlSelect = "SELECT usuarios.nome as nome, usuarios.email as email, usuarios.senha as senha, usuarios.cpf as cpf, especialidade.nomeEspecialidade as especialidade, usuarios.idEspecialidade as idEspecialidade  from usuarios join especialidade on especialidade.idEspecialidade = usuarios.idEspecialidade WHERE idusuario = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
@@ -125,6 +141,8 @@ public class UsuarioDAO {
 					usuario.setEmail(rs.getString("email"));
 					usuario.setCpf(rs.getString("senha"));
 					usuario.setCpf(rs.getString("cpf"));
+					usuario.setNomeEspecialidade(rs.getString("especialidade"));
+					usuario.setIdEspecialidade(rs.getInt("idEspecialidade"));
 				} else {
 					usuario.setId(-1);
 					usuario.setNome(null);

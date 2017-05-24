@@ -29,17 +29,18 @@
     
     <div class="limitHome">
         <form action="controller.do"  method="post">
-        <div class="conteudo">
-        <ul>
-            <li>
-                <input name="categoria" type="text" placeholder=" Nome da Categoria"> </li>
-            <li>
-                <input name="cor"  type="text" placeholder=" Cor da Categoria"> </li>
-            <li>
-                <button type="submit" class="botao" name="command" value="CriarCategoria">SALVAR</button>
-            </li>
-        </ul>    
-        </div>
+        	<div class="conteudo">
+        	<input type="hidden" name="idCategoria" value="${categoria.id }">
+        	<ul>
+            	<li>
+                	<input name="categoria" type="text" value="${categoria.categoria }"> </li>
+            	<li>
+                	<input name="cor"  type="text" value="${categoria.cor }"> </li>
+            	<li>
+                	<button type="submit" class="botao" name="command" value="AlteraCategoria">SALVAR</button>
+            	</li>
+        	</ul>    
+        	</div>
         </form>
     </div>
     

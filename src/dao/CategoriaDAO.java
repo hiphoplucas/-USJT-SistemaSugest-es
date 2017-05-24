@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import model.Categoria;
 
-
 public class CategoriaDAO {
 	public int criar(Categoria categoria) {
 		String sqlInsert = "INSERT INTO especialidade(nomeEspecialidade, corEspecialidade, status) VALUES(?, ?, ?)";
@@ -57,6 +56,20 @@ public class CategoriaDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return categoria;
+	}
+	
+	public void atualizar(Categoria categoria) {
+		String sqlUpdate = "update especialidade set nomeEspecialidade = ?, corEspecialidade = ? where idEspecialidade = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setString(1, categoria.getCategoria());
+			stm.setString(2, categoria.getCor());
+			stm.setInt(3, categoria.getId());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Categoria carregarStatus(String status) {
