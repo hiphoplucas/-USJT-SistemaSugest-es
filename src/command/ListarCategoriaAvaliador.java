@@ -37,16 +37,4 @@ public class ListarCategoriaAvaliador implements Command {
 
 
 	}
-
-	public int busca(Categoria categoria, ArrayList<Categoria> lista) {
-		Categoria to;
-		for (int i = 0; i < lista.size(); i++) {
-			to = lista.get(i);
-			if (to.getId() == categoria.getId()) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
 }

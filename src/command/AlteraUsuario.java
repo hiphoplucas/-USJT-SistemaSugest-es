@@ -39,7 +39,7 @@ public class AlteraUsuario implements Command {
 		us.carregar(pIdUsuario);
 		request.setAttribute("usuario", usuario);
 				
-		view = request.getRequestDispatcher("meusDados.jsp");
+		view = request.getRequestDispatcher("controller.do?command=CarregaUsuario&"+pIdUsuario);
 		view.forward(request, response);
 		
 

@@ -32,7 +32,13 @@
                 	        <option value=" > 0">*Selecione o Departamento*</option>
                     	<c:if test="${not empty lista}">
                         	<c:forEach var="categoria" items="${lista}">                    
-                            	<option value=" = ${categoria.id }">${categoria.categoria }</option>
+                            	<option
+                            	
+                            	<c:if test="${categoria.id == pIdEspecialidade}">
+                            	 SELECTED
+                            	</c:if>
+                            	
+                            	 value="${categoria.id}">${categoria.categoria }</option>
                         	</c:forEach>
                     	</c:if>
                 	</select>

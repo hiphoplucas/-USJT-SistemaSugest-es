@@ -96,7 +96,7 @@ public class SugestaoDAO {
 	public ArrayList<Sugestao> listarSugestaoCategoria(String idEspecialidade) {
 		Sugestao sugestao;
 		ArrayList<Sugestao> listaTop = new ArrayList<>();
-		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE sugestao.status='ativo' and sugestao.Especialidade  " + idEspecialidade + "  order by data desc";
+		String sqlSelect = "SELECT idSugestao, titulo, sugestao, DATE_FORMAT(sugestao.data, '%d/%m/%y') as data, especialidade.nomeEspecialidade as especialidade, especialidade.corEspecialidade as cor FROM sugestao join especialidade on especialidade.idEspecialidade = sugestao.Especialidade WHERE sugestao.status='ativo' and sugestao.Especialidade = " + idEspecialidade + "  order by data desc";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {

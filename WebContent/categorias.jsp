@@ -58,16 +58,19 @@
           					<c:forEach var="categoria" items="${lista}">
                                        <tr>
                                             <td>
+                                               <input type="hidden" name="idCategoria" value="${categoria.id }">
                                                ${categoria.id }
                                             </td>
                                             <td>
+                                                <input type="hidden" name="categoria" value="${categoria.categoria }">
                                                 ${categoria.categoria }
                                             </td>
                                             <td>
+                                                <input type="hidden" name="cor" value="${categoria.cor }">
                                                 ${categoria.cor }
                                             </td>
                                             <td class="actions">
-                                                <a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
+                                                <a href="controller.do?command=CarregaCategoria&idCategoria=${categoria.id }"><button class="alerta">EDITAR</button></a>
                                                 <c:if test="${categoria.status == 'ativo' }"><a href="controller.do?command=InativaCategoria&idCategoria=${categoria.id }"><button class="perigo">INATIVAR</button></a></c:if>
                                                 <c:if test="${categoria.status == 'inativo' }"><a href="controller.do?command=AtivaCategoria&idCategoria=${categoria.id }"><button class="pPerigo">ATIVAR</button></a></c:if>
                                             </td>

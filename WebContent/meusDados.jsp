@@ -30,13 +30,16 @@
         <input type="hidden" name="idUsuario" value="${idusuario }">
         <ul>
             <li>
-                <input name="nome" type="text" placeholder=${usuario.nome }> </li>
+                <input name="nome" type="text" value=${usuario.nome }> </li>
             <li>
-                <input name="email"  type="text" placeholder=${usuario.email }> </li>
+                <input name="email"  type="text" value=${usuario.email }> </li>
+            
             <li>
-                <input name="senha" type="password" placeholder=" Senha"> </li>
+                <input name="cpf" type="text" value=${usuario.cpf }> </li>                
+            
             <li>
-                <input name="cpf" type="text" placeholder=${usuario.cpf }> </li>                
+                <input name="senha" type="password" placeholder=" Senha"> 
+            </li>
             <li>
                 <button type="submit" class="botao" name="command" value="AlteraUsuario">SALVAR</button>
             </li>

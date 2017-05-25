@@ -32,7 +32,7 @@ public class Login implements Command {
 		
 			RequestDispatcher view = null;
 			HttpSession session = request.getSession();
-			view = request.getRequestDispatcher("index.jsp?erro=2");
+			view = request.getRequestDispatcher("index.jsp?erro=1");
 			view.forward(request, response);
 			
 		}

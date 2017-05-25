@@ -11,6 +11,9 @@ public class CategoriaService {
 	public int criar(Categoria categoria) {
 		return dao.criar(categoria);
 	}
+	public void atualizar(Categoria categoria){
+		dao.atualizar(categoria);
+	}
 	public Categoria carregar(int id){
 		return dao.carregar(id);
 	}

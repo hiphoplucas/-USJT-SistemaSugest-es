@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.MD5;
 import model.Usuario;
 import service.UsuarioService;
 
@@ -30,6 +31,7 @@ public class CriarAvaliador implements Command {
 
 		}
 		String pStatus = "in ('ativo')";
+		String ppSenha = MD5.MD5(pSenha);
 
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
@@ -37,7 +39,7 @@ public class CriarAvaliador implements Command {
 		usuario.setIdEspecialidade(pCategoria);
 		usuario.setEmail(pEmail);
 		usuario.setCpf(pCpf);
-		usuario.setSenha(pSenha);
+		usuario.setSenha(ppSenha);
 		UsuarioService us = new UsuarioService();
 
 		us.criarAvaliador(usuario);

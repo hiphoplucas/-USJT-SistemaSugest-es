@@ -19,15 +19,11 @@ public class CarregaUsuario implements Command {
 		HttpServletResponse response) throws ServletException, IOException {
 		int pIdUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 		
-		Usuario usuario = new Usuario();
-		usuario.setId(pIdUsuario);
-					
-		UsuarioService us = new UsuarioService();
-				
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
-		usuario = us.carregar(pIdUsuario);
+		UsuarioService us = new UsuarioService();
+		Usuario usuario = us.carregar(pIdUsuario);
 		request.setAttribute("usuario", usuario);
 				
 		view = request.getRequestDispatcher("meusDados.jsp");

@@ -9,8 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>USJT - SISTEMA SUGESTÕES</title>
 	<c:import url="icon.jsp"/>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/estilo.css" rel="stylesheet">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
 </head>
 <header>
     <div class="top">
@@ -44,7 +46,7 @@
                             <li>
                                 <input name="senha" type="password" placeholder=" Senha"> </li>
                             <li>
-                                <input type="password" placeholder=" Confirme a Senha"> </li>
+                                <input name="csenha" type="password" placeholder=" Confirme a Senha"> </li>
                             <li>
                                 <button type="submit" id="cadastrar" name="command" value="CriarUsuario">SALVAR</button>
                             </li>
@@ -53,6 +55,12 @@
                     </div>
                
                 <div class="opcoes" id="direito">
+                    <c:if test="${param['erro']==1}">
+                    	<div class="alert alert-danger alert-dismissible" role="alert">
+						  <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+						  <strong>Erro!</strong> Usuário ou senha inválidos
+						</div>
+                    </c:if>
                     <form action="controller.do" method="post">
                     <input type="hidden" name="command" value="Login">
                         <ul>
